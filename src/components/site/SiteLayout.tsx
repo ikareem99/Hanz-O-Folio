@@ -31,7 +31,7 @@ function NavBar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Hide if scrolling down and past 50px, show if scrolling up
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setIsVisible(false);
@@ -46,10 +46,9 @@ function NavBar() {
   }, [lastScrollY]);
 
   return (
-    <header 
-      className={`pointer-events-none fixed inset-x-0 top-[var(--nav-top)] z-50 flex justify-center px-4 transition-all duration-300 ${
-        isVisible ? "translate-y-0 opacity-100" : "-translate-y-[150%] opacity-0"
-      }`}
+    <header
+      className={`pointer-events-none fixed inset-x-0 top-[var(--nav-top)] z-50 flex justify-center px-4 transition-all duration-300 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-[150%] opacity-0"
+        }`}
     >
       <nav className="pointer-events-auto flex h-12 items-center gap-[18px] rounded-[16px] bg-white/[0.03] px-5 backdrop-blur-md">
         {navItems.map(({ icon: Icon, to, label }) => {
@@ -62,9 +61,8 @@ function NavBar() {
               className="group relative flex size-9 items-center justify-center rounded-lg text-foreground"
             >
               <span
-                className={`absolute inset-0 rounded-lg bg-white/10 transition-opacity duration-200 ${
-                  active ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                }`}
+                className={`absolute inset-0 rounded-lg bg-white/10 transition-opacity duration-200 ${active ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                  }`}
               />
               <Icon className="relative size-[18px]" strokeWidth={1.8} />
               <span className="pointer-events-none absolute top-[46px] left-1/2 -translate-x-1/2 translate-y-1 scale-95 rounded-full bg-white/10 px-[10px] py-1 text-[12px] leading-[12px] whitespace-nowrap text-white opacity-0 backdrop-blur-md transition-all duration-200 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100">
@@ -84,44 +82,20 @@ function ProfileCard() {
       <div className="relative overflow-hidden rounded-[16px] bg-card px-5 py-[30px] text-card-foreground">
         {/* Top arc: anchored to the card's top-left, sweeping right over the photo */}
         <svg
-          className="pointer-events-none absolute top-0 left-0 z-20 h-[130px] w-[290px]"
-          viewBox="0 0 290 130"
-          preserveAspectRatio="xMinYMin meet"
+          className="pointer-events-none absolute top-[-20px] left-[-20px] z-20 h-[170px] w-[240px]"
+          viewBox="0 0 240 170"
           fill="none"
           aria-hidden="true"
         >
           <path
-            d="M6 26 C 28 92, 100 126, 172 110 C 230 96, 266 58, 280 12"
+            d="M 10 40 A 100 100 0 0 0 190 10"
             stroke="var(--primary)"
-            strokeWidth="5"
+            strokeWidth="3.5"
             strokeLinecap="round"
-            strokeDasharray="5 14"
-            strokeDashoffset="0"
-            vectorEffect="non-scaling-stroke"
+            strokeDasharray="4 14"
             fill="none"
           />
         </svg>
-
-        {/* Bottom arc: anchored to the card's bottom-left, curving up toward the badge */}
-        <svg
-          className="pointer-events-none absolute bottom-[150px] left-0 z-20 h-[150px] w-[200px] max-[809px]:hidden"
-          viewBox="0 0 200 150"
-          preserveAspectRatio="xMinYMax meet"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M10 8 C 14 66, 44 106, 92 122 C 122 132, 150 136, 176 137"
-            stroke="var(--primary)"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeDasharray="5 14"
-            strokeDashoffset="0"
-            vectorEffect="non-scaling-stroke"
-            fill="none"
-          />
-        </svg>
-
 
         <img
           src={profileImg}
@@ -131,16 +105,32 @@ function ProfileCard() {
         <p className="relative z-10 mt-6 text-center text-[36px] leading-[39.6px] font-bold tracking-[-0.04em]">
           Aaabad Ahmed
         </p>
-        <div className="relative z-10 mt-6 flex justify-center max-[809px]:hidden">
-          <span className="ml-[-14%] flex size-9 items-center justify-center rounded-full bg-primary">
+        <div className="relative z-10 mt-4 flex pl-[90px]">
+          {/* Bottom arc: anchored relative to the badge container so they perfectly join on all devices */}
+          <svg
+            className="pointer-events-none absolute left-[-20px] top-0 z-[-1] h-[100px] w-[150px]"
+            viewBox="0 0 150 100"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M 0 80 A 160 160 0 0 0 115 32"
+              stroke="var(--primary)"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeDasharray="4 14"
+              fill="none"
+            />
+          </svg>
+          <span className="relative -top-2 flex size-9 items-center justify-center rounded-full bg-primary">
             <Flame className="size-5 text-primary-foreground" />
           </span>
         </div>
-        <p className="relative z-10 mx-auto mt-4 w-[300px] min-[810px]:mt-[47px] max-w-full text-center text-[18px] leading-[19.8px] font-medium text-[#6a6b6e]">
+        <p className="relative z-10 mx-auto mt-[47px] w-[300px] max-w-full text-center text-[18px] leading-[19.8px] font-medium text-[#6a6b6e]">
           A Software Engineer who has developed countless innovative solutions.
         </p>
 
-        <div className="relative z-10 mt-5 flex items-center justify-center gap-4 min-[810px]:mt-[30px] text-primary">
+        <div className="relative z-10 mt-[30px] flex items-center justify-center gap-4 text-primary">
           {[
             { Icon: Dribbble, href: "https://dribbble.com", label: "Dribbble" },
             { Icon: Twitter, href: "https://twitter.com", label: "Twitter" },
