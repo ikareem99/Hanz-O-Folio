@@ -163,7 +163,7 @@ function ProfileCard() {
 
 export function SectionTitle({ top, bottom }: { top: string; bottom: string }) {
   return (
-    <h2 className="t-section mb-5">
+    <h2 className="t-section mb-5 text-center sm:text-left">
       <span className="block text-foreground">{top}</span>
       <span className="block text-heading-ghost">{bottom}</span>
     </h2>
