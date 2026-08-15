@@ -107,6 +107,7 @@ function ProfileCard() {
         <img
           src={profileImg}
           alt="Portrait of Hanzala Kareem"
+          fetchPriority="high"
           className="relative z-10 mx-auto h-[var(--card-img-h)] w-[var(--card-img-w)] rounded-[16px] object-cover"
         />
         <p className="relative z-10 mt-6 text-center text-[36px] leading-[39.6px] font-bold tracking-[-0.04em]">

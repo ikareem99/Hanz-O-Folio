@@ -54,13 +54,13 @@ function Index() {
   return (
     <SiteLayout>
       <section className="max-[1199px]:text-center">
-        <ScrollReveal>
+        <ScrollReveal priority>
           <h1 className="t-display">
             <span className="block text-foreground">AI / ML</span>
             <span className="block text-heading-ghost">Engineer</span>
           </h1>
         </ScrollReveal>
-        <ScrollReveal delay={0.1}>
+        <ScrollReveal delay={0.1} priority>
           <p className="mt-[10px] max-w-[480px] t-lede max-[1199px]:mx-auto text-muted-foreground">
             Passionate about building intelligent systems and extracting insights from data. Specializing in Python, C++, and building end-to-end ML solutions.
           </p>

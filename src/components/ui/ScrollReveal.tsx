@@ -7,6 +7,7 @@ export interface ScrollRevealProps {
   delay?: number;
   duration?: number;
   yOffset?: number;
+  priority?: boolean;
 }
 
 export function ScrollReveal({
@@ -15,11 +16,13 @@ export function ScrollReveal({
   delay = 0,
   duration = 0.6,
   yOffset = 30,
+  priority = false,
 }: ScrollRevealProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: yOffset }}
-      whileInView={{ opacity: 1, y: 0 }}
+      whileInView={!priority ? { opacity: 1, y: 0 } : undefined}
+      animate={priority ? { opacity: 1, y: 0 } : undefined}
       viewport={{ once: true, margin: "-40px" }}
       transition={{
         duration,
