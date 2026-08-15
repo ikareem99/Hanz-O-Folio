@@ -1,22 +1,22 @@
-import najmaiImg from "@/assets/najmai.jpeg.asset.json";
-import damasImg from "@/assets/damas.png.asset.json";
-import majdImg from "@/assets/majd.png.asset.json";
-import faseelhImg from "@/assets/faseelh.png.asset.json";
-import abjadImg from "@/assets/abjad.png.asset.json";
-import baytImg from "@/assets/bayt.webp.asset.json";
-import stabraqImg from "@/assets/stabraq.jpg.asset.json";
-import postwingImg from "@/assets/postwing.png.asset.json";
-import framerIcon from "@/assets/framer.png.asset.json";
-import figmaIcon from "@/assets/figma.png.asset.json";
-import lemonIcon from "@/assets/lemon.png.asset.json";
-import chatgptIcon from "@/assets/chatgpt.png.asset.json";
-import notionIcon from "@/assets/notion.png.asset.json";
-import nextjsIcon from "@/assets/nextjs.png.asset.json";
-import blog1 from "@/assets/blog1.jpg.asset.json";
-import blog2 from "@/assets/blog2.jpg.asset.json";
-import blog3 from "@/assets/blog3.jpg.asset.json";
-import blog4 from "@/assets/blog4.jpg.asset.json";
-import blog5 from "@/assets/blog5.jpg.asset.json";
+import najmaiImg from "@/assets/najmai.jpeg";
+import damasImg from "@/assets/damas.png";
+import majdImg from "@/assets/majd.png";
+import faseelhImg from "@/assets/faseelh.png";
+import abjadImg from "@/assets/abjad.png";
+import baytImg from "@/assets/bayt.webp";
+import stabraqImg from "@/assets/stabraq.jpg";
+import postwingImg from "@/assets/postwing.png";
+import framerIcon from "@/assets/framer.png";
+import figmaIcon from "@/assets/figma.png";
+import lemonIcon from "@/assets/lemon.png";
+import chatgptIcon from "@/assets/chatgpt.png";
+import notionIcon from "@/assets/notion.png";
+import nextjsIcon from "@/assets/nextjs.png";
+import blog1 from "@/assets/blog1.jpg";
+import blog2 from "@/assets/blog2.jpg";
+import blog3 from "@/assets/blog3.jpg";
+import blog4 from "@/assets/blog4.jpg";
+import blog5 from "@/assets/blog5.jpg";
 
 export const stats = [
   { value: "+12", line1: "YEARS OF", line2: "EXPERIENCE" },
@@ -25,14 +25,14 @@ export const stats = [
 ];
 
 export const projects = [
-  { img: najmaiImg.url, title: "NajmAI", subtitle: "SaaS Framer Template" },
-  { img: damasImg.url, title: "Damas", subtitle: "Free Framer Template" },
-  { img: majdImg.url, title: "Majd", subtitle: "Free Portfolio Template" },
-  { img: faseelhImg.url, title: "Faseelh", subtitle: "Free Framer Template" },
-  { img: abjadImg.url, title: "ABJAD", subtitle: "Portfolio Framer Template" },
-  { img: baytImg.url, title: "Bayt", subtitle: "Real Estate Framer Template" },
-  { img: stabraqImg.url, title: "Stabraq", subtitle: "Portfolio Framer Template" },
-  { img: postwingImg.url, title: "PostWing", subtitle: "Social Media Scheduler" },
+  { img: najmaiImg, title: "NajmAI", subtitle: "SaaS Framer Template" },
+  { img: damasImg, title: "Damas", subtitle: "Free Framer Template" },
+  { img: majdImg, title: "Majd", subtitle: "Free Portfolio Template" },
+  { img: faseelhImg, title: "Faseelh", subtitle: "Free Framer Template" },
+  { img: abjadImg, title: "ABJAD", subtitle: "Portfolio Framer Template" },
+  { img: baytImg, title: "Bayt", subtitle: "Real Estate Framer Template" },
+  { img: stabraqImg, title: "Stabraq", subtitle: "Portfolio Framer Template" },
+  { img: postwingImg, title: "PostWing", subtitle: "Social Media Scheduler" },
 ];
 
 export const experience = [
@@ -63,12 +63,12 @@ export const experience = [
 ];
 
 export const tools = [
-  { icon: framerIcon.url, name: "Framer", role: "Website Builder" },
-  { icon: figmaIcon.url, name: "Figma", role: "Design Tool" },
-  { icon: lemonIcon.url, name: "Lemon Squeezy", role: "Payments Provider" },
-  { icon: chatgptIcon.url, name: "ChatGPT", role: "AI Assistant" },
-  { icon: notionIcon.url, name: "Notion", role: "Productivity Tool" },
-  { icon: nextjsIcon.url, name: "Nextjs", role: "React framework" },
+  { icon: framerIcon, name: "Framer", role: "Website Builder" },
+  { icon: figmaIcon, name: "Figma", role: "Design Tool" },
+  { icon: lemonIcon, name: "Lemon Squeezy", role: "Payments Provider" },
+  { icon: chatgptIcon, name: "ChatGPT", role: "AI Assistant" },
+  { icon: notionIcon, name: "Notion", role: "Productivity Tool" },
+  { icon: nextjsIcon, name: "Nextjs", role: "React framework" },
 ];
 
 export type Post = {
@@ -89,7 +89,7 @@ export const posts: Post[] = [
       "As the internet continues to develop and grow exponentially, jobs related to the industry do too, particularly those that relate to web design and development.",
     date: "Apr 8, 2022",
     read: "6min read",
-    cover: blog1.url,
+    cover: blog1,
     body: [
       {
         heading: "Where to begin",
@@ -120,7 +120,7 @@ export const posts: Post[] = [
       "Whether you work in marketing, sales, or product design, you understand the importance of a quality landing page. Landing pages are standalone pages built to convert.",
     date: "Mar 15, 2022",
     read: "6min read",
-    cover: blog2.url,
+    cover: blog2,
     body: [
       {
         heading: "What is a landing page?",
@@ -153,7 +153,7 @@ export const posts: Post[] = [
       "Tools change fast, but the fundamentals of clarity, hierarchy, and empathy age remarkably well. Here is how to invest your time.",
     date: "Feb 28, 2022",
     read: "6min read",
-    cover: blog3.url,
+    cover: blog3,
     body: [
       {
         heading: "Tools are temporary",
@@ -182,7 +182,7 @@ export const posts: Post[] = [
       "A navigation bar looks simple until you account for states, breakpoints, and every page it has to describe. Variables keep it sane.",
     date: "Feb 6, 2022",
     read: "6min read",
-    cover: blog4.url,
+    cover: blog4,
     body: [
       {
         heading: "Start with the states",
@@ -211,7 +211,7 @@ export const posts: Post[] = [
       "A portfolio is not an archive. It is an argument for the kind of work you want to do next, told through a handful of projects.",
     date: "Jan 12, 2022",
     read: "6min read",
-    cover: blog5.url,
+    cover: blog5,
     body: [
       {
         heading: "Fewer, deeper projects",

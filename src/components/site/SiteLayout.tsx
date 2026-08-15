@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 
-import profileImg from "@/assets/profile.jpg.asset.json";
+import profileImg from "@/assets/profile.jpg";
 
 const navItems = [
   { icon: Home, to: "/", label: "Home" },
@@ -101,7 +101,7 @@ function ProfileCard() {
 
 
         <img
-          src={profileImg.url}
+          src={profileImg}
           alt="Portrait of Aaabad Ahmed"
           className="relative z-10 mx-auto h-[var(--card-img-h)] w-[var(--card-img-w)] rounded-[16px] object-cover"
         />
