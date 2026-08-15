@@ -1,0 +1,241 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-heading-ghost: var(--heading-ghost);
+  --color-lime: var(--lime);
+  --color-lime-foreground: var(--lime-foreground);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: rgb(21, 19, 18);
+  --foreground: rgb(255, 255, 255);
+  --surface: rgba(255, 255, 255, 0.05);
+  --card: rgb(255, 255, 255);
+  --card-foreground: rgb(0, 0, 0);
+  --popover: rgb(30, 28, 27);
+  --popover-foreground: rgb(255, 255, 255);
+  --primary: rgb(244, 108, 56);
+  --primary-foreground: rgb(255, 255, 255);
+  --secondary: rgba(255, 255, 255, 0.05);
+  --secondary-foreground: rgb(255, 255, 255);
+  --muted: rgba(255, 255, 255, 0.05);
+  --muted-foreground: rgb(153, 143, 143);
+  --accent: rgba(255, 255, 255, 0.08);
+  --accent-foreground: rgb(255, 255, 255);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: rgb(255, 255, 255);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: rgb(244, 108, 56);
+  --heading-ghost: rgba(182, 180, 189, 0.2);
+  --lime: rgb(198, 249, 60);
+  --lime-foreground: rgb(23, 26, 12);
+}
+
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@utility section-title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  text-transform: uppercase;
+  font-size: clamp(2.75rem, 7vw, 5.25rem);
+}
+
+@utility wave-pattern {
+  background-image: repeating-radial-gradient(
+    circle at 120% 40%,
+    rgba(255, 255, 255, 0.09) 0 2px,
+    transparent 2px 34px
+  );
+}
+
+@utility zigzag-pattern {
+  background-image: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.28) 0 3px,
+      transparent 3px 60px
+    ),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.28) 0 3px, transparent 3px 60px);
+}
+
+/* ---- Responsive metric system (matches reference breakpoints) ---- */
+:root {
+  --shell-pad: 20px;
+  --shell-top: 100px;
+  --nav-top: 20px;
+  --fs-h1: 52px;
+  --fs-h2: 42px;
+  --fs-stat: 50px;
+  --lh-stat: 60px;
+  --fs-stat-label: 14px;
+  --lh-stat-label: 16.8px;
+  --ls-stat-label: -0.14px;
+  --fs-body: 16px;
+  --lh-body: 22.4px;
+  --fs-lede: 16px;
+  --lh-lede: 22.4px;
+  --fs-card-title: 18px;
+  --lh-card-title: 21.6px;
+  --fs-meta: 16px;
+  --lh-meta: 17.6px;
+  --card-img-w: 260px;
+  --card-img-h: 210px;
+  --proj-img-w: 90px;
+  --proj-img-h: 93px;
+  --section-gap: 90px;
+}
+
+@media (min-width: 810px) {
+  :root {
+    --shell-pad: 30px;
+    --shell-top: 120px;
+    --nav-top: 30px;
+    --fs-h1: 86px;
+    --fs-h2: 74px;
+    --fs-stat: 60px;
+    --lh-stat: 72px;
+    --fs-stat-label: 16px;
+    --lh-stat-label: 19.2px;
+    --ls-stat-label: -0.16px;
+    --fs-card-title: 20px;
+    --lh-card-title: 24px;
+    --card-img-w: 240px;
+    --card-img-h: 284px;
+    --proj-img-w: 130px;
+    --proj-img-h: 135px;
+    --section-gap: 110px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --shell-top: 160px;
+    --fs-h1: 94px;
+    --fs-h2: 90px;
+    --fs-stat: 70px;
+    --lh-stat: 84px;
+    --ls-stat-label: -0.16px;
+    --fs-lede: 18px;
+    --lh-lede: 25.2px;
+    --fs-card-title: 26px;
+    --lh-card-title: 31.2px;
+    --section-gap: 120px;
+  }
+}
+
+
+@utility site-shell {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--shell-pad);
+  padding-top: var(--shell-top);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 40px;
+
+  @media (min-width: 1200px) {
+    width: min(1140px, 100vw - 220px);
+    padding-inline: 0;
+    grid-template-columns: 344px minmax(0, 1fr);
+    column-gap: 50px;
+    align-items: start;
+  }
+
+  @media (min-width: 1360px) {
+    column-gap: 100px;
+  }
+}
+
+@utility t-display {
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  font-size: var(--fs-h1);
+}
+
+@utility t-section {
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  font-size: var(--fs-h2);
+}
+
+@utility t-body {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: normal;
+}
+
+@utility t-lede {
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  letter-spacing: normal;
+}
+
+@utility t-card-title {
+  font-size: var(--fs-card-title);
+  line-height: var(--lh-card-title);
+  letter-spacing: normal;
+  font-weight: 600;
+}
+
+@utility t-meta {
+  font-size: var(--fs-meta);
+  line-height: var(--lh-meta);
+  letter-spacing: normal;
+}
+
+
+@media (min-width: 1360px) {
+  :root {
+    --fs-h1: 110px;
+  }
+}
