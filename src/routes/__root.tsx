@@ -73,21 +73,46 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Aaabad Ahmed — Software Engineer Portfolio" },
+      { title: "Hanzala Kareem — Machine Learning Engineer Portfolio" },
       {
         name: "description",
         content:
-          "Portfolio of Aaabad Ahmed, a software engineer crafting intuitive, engaging digital products.",
+          "Portfolio of Hanzala Kareem, a machine learning engineer crafting intelligent solutions.",
       },
-      { name: "author", content: "Aaabad Ahmed" },
-      { property: "og:title", content: "Aaabad Ahmed — Software Engineer Portfolio" },
+      { name: "author", content: "Hanzala Kareem" },
+      { property: "og:title", content: "Hanzala Kareem — Machine Learning Engineer Portfolio" },
       {
         property: "og:description",
         content:
-          "Portfolio of Aaabad Ahmed, a software engineer crafting intuitive, engaging digital products.",
+          "Portfolio of Hanzala Kareem, a machine learning engineer crafting intelligent solutions.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://ikareem.netlify.app/profile.png" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://ikareem.netlify.app/profile.png" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Hanzala Kareem",
+          url: "https://ikareem.netlify.app/",
+          image: "https://ikareem.netlify.app/profile.png",
+          jobTitle: "Machine Learning Engineer",
+          alumniOf: {
+            "@type": "CollegeOrUniversity",
+            name: "FAST NUCES ISLAMABAD",
+          },
+          sameAs: [
+            "https://pk.linkedin.com/in/hanzala-kareem",
+            "https://github.com/ikareem99/",
+            "https://www.instagram.com/ikareem99/",
+            "https://www.facebook.com/ikareem99/",
+          ],
+        }),
+      },
     ],
     links: [
       {

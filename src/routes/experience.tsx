@@ -6,13 +6,13 @@ import { ExperienceSection } from "@/components/site/sections";
 export const Route = createFileRoute("/experience")({
   head: () => ({
     meta: [
-      { title: "Experience — Aaabad Ahmed" },
+      { title: "Experience — Hanzala Kareem" },
       {
         name: "description",
         content:
           "Twelve years of design and engineering experience across studios, startups and product teams.",
       },
-      { property: "og:title", content: "Experience — Aaabad Ahmed" },
+      { property: "og:title", content: "Experience — Hanzala Kareem" },
       {
         property: "og:description",
         content: "Twelve years of design and engineering experience across product teams.",

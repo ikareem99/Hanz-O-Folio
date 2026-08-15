@@ -12,20 +12,38 @@ export const Route = createFileRoute("/blog/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Not found — Aaabad Ahmed" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Not found — Hanzala Kareem" }, { name: "robots", content: "noindex" }],
       };
     }
     const { post } = loaderData;
     return {
       meta: [
-        { title: `${post.title} — Aaabad Ahmed` },
+        { title: `${post.title} — Hanzala Kareem` },
         { name: "description", content: post.excerpt },
         { property: "og:title", content: post.title },
         { property: "og:description", content: post.excerpt },
         { property: "og:type", content: "article" },
+        { property: "article:published_time", content: new Date(post.date).toISOString() },
+        { property: "article:author", content: "Hanzala Kareem" },
         { property: "og:image", content: post.cover },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: post.cover },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.title,
+            image: post.cover,
+            datePublished: new Date(post.date).toISOString(),
+            author: {
+              "@type": "Person",
+              name: "Hanzala Kareem",
+            },
+          }),
+        },
       ],
     };
   },

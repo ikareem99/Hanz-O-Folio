@@ -6,19 +6,31 @@ import { ProjectsSection } from "@/components/site/sections";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Projects — Aaabad Ahmed" },
+      { title: "Projects — Hanzala Kareem" },
       {
         name: "description",
         content:
-          "Selected projects by Aaabad Ahmed: SaaS, portfolio and real-estate products built with care.",
+          "Selected machine learning and C++ projects by Hanzala Kareem.",
       },
-      { property: "og:title", content: "Projects — Aaabad Ahmed" },
+      { property: "og:title", content: "Projects — Hanzala Kareem" },
       {
         property: "og:description",
-        content: "Selected projects by Aaabad Ahmed, software engineer and product designer.",
+        content: "Selected projects by Hanzala Kareem, machine learning engineer.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Projects — Hanzala Kareem",
+          description: "Machine Learning and C++ projects built by Hanzala Kareem.",
+          url: "https://ikareem.netlify.app/projects",
+        }),
+      },
     ],
   }),
   component: ProjectsPage,

@@ -6,18 +6,34 @@ import { PostsSection } from "@/components/site/sections";
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "Design Thoughts — Aaabad Ahmed" },
+      { title: "Personal Thoughts — Hanzala Kareem" },
       {
         name: "description",
-        content: "Essays on design careers, landing pages, portfolios and building for the web.",
+        content: "Articles on machine learning, C++ simulation, algorithms, and AI development.",
       },
-      { property: "og:title", content: "Design Thoughts — Aaabad Ahmed" },
+      { property: "og:title", content: "Personal Thoughts — Hanzala Kareem" },
       {
         property: "og:description",
-        content: "Essays on design careers, landing pages, portfolios and building for the web.",
+        content: "Articles on machine learning, C++ simulation, algorithms, and AI development.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          name: "Personal Thoughts — Hanzala Kareem",
+          description: "Articles on machine learning, C++ simulation, algorithms, and AI development.",
+          url: "https://ikareem.netlify.app/blog",
+          author: {
+            "@type": "Person",
+            name: "Hanzala Kareem",
+          },
+        }),
+      },
     ],
   }),
   component: BlogPage,

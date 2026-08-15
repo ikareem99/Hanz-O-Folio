@@ -1,19 +1,19 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   Briefcase,
-  Dribbble,
+  Facebook,
   Flame,
   FolderClosed,
+  Github,
   Home,
   Instagram,
+  Linkedin,
   PenSquare,
-  Twitter,
   Wrench,
-  Youtube,
 } from "lucide-react";
 import { useState, useEffect, type ReactNode } from "react";
 
-import profileImg from "@/assets/profile.jpg";
+import profileImg from "@/assets/profile.png";
 import {
   Select,
   SelectContent,
@@ -106,11 +106,11 @@ function ProfileCard() {
 
         <img
           src={profileImg}
-          alt="Portrait of Aaabad Ahmed"
+          alt="Portrait of Hanzala Kareem"
           className="relative z-10 mx-auto h-[var(--card-img-h)] w-[var(--card-img-w)] rounded-[16px] object-cover"
         />
         <p className="relative z-10 mt-6 text-center text-[36px] leading-[39.6px] font-bold tracking-[-0.04em]">
-          Aaabad Ahmed
+          Hanzala Kareem
         </p>
         <div className="relative z-10 mt-4 flex pl-[90px]">
           {/* Bottom arc: anchored relative to the badge container so they perfectly join on all devices */}
@@ -134,15 +134,15 @@ function ProfileCard() {
           </span>
         </div>
         <p className="relative z-10 mx-auto mt-[47px] w-[300px] max-w-full text-center text-[18px] leading-[19.8px] font-medium text-[#6a6b6e]">
-          A Software Engineer who has developed countless innovative solutions.
+          Into AI/ML. I'm the Master of my Fate, the Captain of my Soul.
         </p>
 
         <div className="relative z-10 mt-[30px] flex items-center justify-center gap-4 text-primary">
           {[
-            { Icon: Dribbble, href: "https://dribbble.com", label: "Dribbble" },
-            { Icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-            { Icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-            { Icon: Youtube, href: "https://youtube.com", label: "YouTube" },
+            { Icon: Linkedin, href: "https://pk.linkedin.com/in/hanzala-kareem", label: "LinkedIn" },
+            { Icon: Github, href: "https://github.com/ikareem99/", label: "GitHub" },
+            { Icon: Instagram, href: "https://www.instagram.com/ikareem99/", label: "Instagram" },
+            { Icon: Facebook, href: "https://www.facebook.com/ikareem99/", label: "Facebook" },
           ].map(({ Icon, href, label }) => (
             <a
               key={label}
@@ -257,7 +257,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         </main>
       </div>
       <footer className="pb-10 text-center text-[15px] text-muted-foreground">
-        Made by <span className="text-primary">Aaabad Ahmed</span>
+        Made by <span className="text-primary">Hanzala Kareem</span>
       </footer>
     </div>
   );

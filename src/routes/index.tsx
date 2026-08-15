@@ -14,20 +14,37 @@ import { stats } from "@/data/site";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Aaabad Ahmed — Software Engineer Portfolio" },
+      { title: "Hanzala Kareem — Machine Learning Engineer Portfolio" },
       {
         name: "description",
         content:
-          "Portfolio of Aaabad Ahmed, a software engineer crafting intuitive, engaging digital products.",
+          "Portfolio of Hanzala Kareem, a machine learning engineer crafting intelligent solutions.",
       },
-      { property: "og:title", content: "Aaabad Ahmed — Software Engineer Portfolio" },
+      { property: "og:title", content: "Hanzala Kareem — Machine Learning Engineer Portfolio" },
       {
         property: "og:description",
         content:
-          "Portfolio of Aaabad Ahmed, a software engineer crafting intuitive, engaging digital products.",
+          "Portfolio of Hanzala Kareem, a machine learning engineer crafting intelligent solutions.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          dateCreated: "2024-01-01T12:00:00+00:00",
+          dateModified: new Date().toISOString(),
+          mainEntity: {
+            "@type": "Person",
+            name: "Hanzala Kareem",
+            alternateName: "ikareem99",
+            identifier: "ikareem99",
+          },
+        }),
+      },
     ],
   }),
   component: Index,
@@ -39,14 +56,13 @@ function Index() {
       <section className="max-[1199px]:text-center">
         <ScrollReveal>
           <h1 className="t-display">
-            <span className="block text-foreground">Software</span>
+            <span className="block text-foreground">AI / ML</span>
             <span className="block text-heading-ghost">Engineer</span>
           </h1>
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <p className="mt-[10px] max-w-[480px] t-lede max-[1199px]:mx-auto text-muted-foreground">
-            Passionate about creating intuitive and engaging user experiences. Specialize in
-            transforming ideas into beautifully crafted products.
+            Passionate about building intelligent systems and extracting insights from data. Specializing in Python, C++, and building end-to-end ML solutions.
           </p>
         </ScrollReveal>
 
@@ -73,7 +89,7 @@ function Index() {
               <Layers className="size-7" strokeWidth={1.8} />
               <div className="flex items-end justify-between gap-4">
                 <h3 className="max-w-[260px] text-[24px] leading-[1.1] font-medium uppercase">
-                  Dynamic Animation, Motion Design
+                  AI & Data Science, ML Models
                 </h3>
                 <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-current/50 transition-transform duration-300 group-hover:translate-x-1">
                   <ArrowRight className="size-4" />
@@ -86,7 +102,7 @@ function Index() {
               <LayoutPanelTop className="size-7" strokeWidth={1.8} />
               <div className="flex items-end justify-between gap-4">
                 <h3 className="max-w-[300px] text-[24px] leading-[1.1] font-medium uppercase">
-                  Framer, Figma, Wordpress, Reactjs
+                  Python, Pandas, Numpy, Scikit-Learn, TensorFlow
                 </h3>
                 <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-current/50 transition-transform duration-300 group-hover:translate-x-1">
                   <ArrowRight className="size-4" />
