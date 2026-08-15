@@ -27,7 +27,7 @@ function NavBar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-[var(--nav-top)] z-50 flex justify-center px-4">
+    <header className="pointer-events-none absolute inset-x-0 top-[var(--nav-top)] z-50 flex justify-center px-4">
       <nav className="pointer-events-auto flex h-12 items-center gap-[18px] rounded-[16px] bg-white/[0.03] px-5 backdrop-blur-md">
         {navItems.map(({ icon: Icon, to, label }) => {
           const active = to === "/" ? pathname === "/" : pathname.startsWith(to);
