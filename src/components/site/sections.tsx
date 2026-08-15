@@ -44,17 +44,19 @@ export function ExperienceSection({ limit }: { limit?: number }) {
       <ScrollReveal>
         <SectionTitle top="12 YEARS OF" bottom="EXPERIENCE" />
       </ScrollReveal>
-      <div className="mt-6 space-y-[45px] px-4">
+      <div className="mt-6">
         {experience.slice(0, limit).map((e, index) => (
           <ScrollReveal key={e.company} delay={0.1 + index * 0.1}>
-            <div className="group">
-            <h3 className="t-card-title transition-colors duration-300 group-hover:text-primary">
-              {e.company}
-            </h3>
-            <p className="mt-3 max-w-[520px] t-body text-muted-foreground">{e.description}</p>
-            <p className="mt-4 t-meta text-muted-foreground">{e.period}</p>
-
-            </div>
+            <a href="#" className="group flex items-center gap-5 cursor-pointer rounded-2xl px-4 py-5 transition-colors duration-300 hover:bg-white/[0.04]">
+              <div className="flex-1">
+                <h3 className="t-card-title transition-colors duration-300 group-hover:text-primary">
+                  {e.company}
+                </h3>
+                <p className="mt-3 max-w-[520px] t-body text-muted-foreground">{e.description}</p>
+                <p className="mt-4 t-meta text-muted-foreground">{e.period}</p>
+              </div>
+              <ArrowUpRight className="size-6 shrink-0 text-primary transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+            </a>
           </ScrollReveal>
         ))}
       </div>
@@ -68,10 +70,10 @@ export function ToolsSection() {
       <ScrollReveal>
         <SectionTitle top="PREMIUM" bottom="TOOLS" />
       </ScrollReveal>
-      <div className="mt-9 grid gap-x-4 gap-y-[42px] px-4 sm:grid-cols-2">
+      <div className="mt-9 grid sm:grid-cols-2 gap-2">
         {tools.map((t, index) => (
           <ScrollReveal key={t.name} delay={0.1 + index * 0.1}>
-            <div className="group flex items-center gap-4">
+            <a href="#" className="group flex items-center gap-4 cursor-pointer rounded-2xl px-4 py-5 transition-colors duration-300 hover:bg-white/[0.04]">
             <img
               src={t.icon}
               alt={`${t.name} logo`}
@@ -82,7 +84,7 @@ export function ToolsSection() {
               <h3 className="text-[24px] leading-[28.8px] font-semibold">{t.name}</h3>
               <p className="t-body text-muted-foreground">{t.role}</p>
             </div>
-            </div>
+            </a>
           </ScrollReveal>
         ))}
       </div>
@@ -96,23 +98,25 @@ export function PostsSection({ limit }: { limit?: number }) {
       <ScrollReveal>
         <SectionTitle top="DESIGN" bottom="THOUGHTS" />
       </ScrollReveal>
-      <div className="mt-[50px] space-y-[60px] px-4">
+      <div className="mt-[50px]">
         {posts.slice(0, limit).map((p, index) => (
           <ScrollReveal key={p.slug} delay={0.1 + index * 0.1}>
             <Link
               to="/blog/$slug"
-            params={{ slug: p.slug }}
-            className="group flex max-w-[480px] flex-col"
-          >
-            <h3 className="t-card-title transition-colors duration-300 group-hover:text-primary">
-              {p.title}
-            </h3>
-            <p className="mt-3 t-body text-muted-foreground">{p.excerpt}</p>
-            <div className="mt-4 flex items-center justify-between t-meta text-muted-foreground">
-
-              <span>{p.date}</span>
-              <span>{p.read}</span>
-            </div>
+              params={{ slug: p.slug }}
+              className="group flex flex-col rounded-2xl px-4 py-5 transition-colors duration-300 hover:bg-white/[0.04]"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="t-card-title max-w-[480px] transition-colors duration-300 group-hover:text-primary">
+                  {p.title}
+                </h3>
+                <ArrowUpRight className="size-6 shrink-0 text-primary transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+              </div>
+              <p className="mt-3 max-w-[480px] t-body text-muted-foreground">{p.excerpt}</p>
+              <div className="mt-4 flex items-center justify-between t-meta text-muted-foreground">
+                <span>{p.date}</span>
+                <span>{p.read}</span>
+              </div>
             </Link>
           </ScrollReveal>
         ))}

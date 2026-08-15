@@ -14,6 +14,13 @@ import {
 import { useState, useEffect, type ReactNode } from "react";
 
 import profileImg from "@/assets/profile.jpg";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const navItems = [
   { icon: Home, to: "/", label: "Home" },
@@ -64,7 +71,7 @@ function NavBar() {
                 className={`absolute inset-0 rounded-lg bg-white/10 transition-opacity duration-200 ${active ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                   }`}
               />
-              <Icon className="relative size-[18px]" strokeWidth={1.8} />
+              <Icon className="relative size-5" strokeWidth={1.8} />
               <span className="pointer-events-none absolute top-[46px] left-1/2 -translate-x-1/2 translate-y-1 scale-95 rounded-full bg-white/10 px-[10px] py-1 text-[12px] leading-[12px] whitespace-nowrap text-white opacity-0 backdrop-blur-md transition-all duration-200 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100">
                 {label}
               </span>
@@ -202,13 +209,17 @@ export function ContactSection() {
           <label htmlFor="budget" className={label}>
             Budget
           </label>
-          <select id="budget" name="budget" defaultValue="" className={field}>
-            <option value="">Select…</option>
-            <option>&lt;$3k</option>
-            <option>$3k - $5k</option>
-            <option>$5k - $10k</option>
-            <option>&gt;$10k</option>
-          </select>
+          <Select name="budget" defaultValue="">
+            <SelectTrigger className={field}>
+              <SelectValue placeholder="Select…" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="<3k">&lt;$3k</SelectItem>
+              <SelectItem value="3k-5k">$3k - $5k</SelectItem>
+              <SelectItem value="5k-10k">$5k - $10k</SelectItem>
+              <SelectItem value=">10k">&gt;$10k</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         <div>
           <label htmlFor="message" className={label}>
