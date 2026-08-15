@@ -11,7 +11,7 @@ import {
   Wrench,
   Youtube,
 } from "lucide-react";
-import type { ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 
 import profileImg from "@/assets/profile.jpg";
 
@@ -25,9 +25,32 @@ const navItems = [
 
 function NavBar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Hide if scrolling down and past 50px, show if scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
-    <header className="pointer-events-none absolute inset-x-0 top-[var(--nav-top)] z-50 flex justify-center px-4">
+    <header 
+      className={`pointer-events-none fixed inset-x-0 top-[var(--nav-top)] z-50 flex justify-center px-4 transition-all duration-300 ${
+        isVisible ? "translate-y-0 opacity-100" : "-translate-y-[150%] opacity-0"
+      }`}
+    >
       <nav className="pointer-events-auto flex h-12 items-center gap-[18px] rounded-[16px] bg-white/[0.03] px-5 backdrop-blur-md">
         {navItems.map(({ icon: Icon, to, label }) => {
           const active = to === "/" ? pathname === "/" : pathname.startsWith(to);
@@ -224,7 +247,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-background">
       <NavBar />
       <div className="site-shell pb-24">
-        <aside className="lg:sticky lg:top-[110px] lg:self-start">
+        <aside className="lg:sticky lg:top-6 lg:self-start">
           <ProfileCard />
         </aside>
         <main className="min-w-0 space-y-[var(--section-gap)]">
