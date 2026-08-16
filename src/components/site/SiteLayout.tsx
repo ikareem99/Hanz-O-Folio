@@ -1,4 +1,7 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Briefcase,
   Facebook,
@@ -31,7 +34,7 @@ const navItems = [
 ] as const;
 
 function NavBar() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -63,7 +66,7 @@ function NavBar() {
           return (
             <Link
               key={label}
-              to={to}
+              href={to}
               aria-label={label}
               className="group relative flex size-9 items-center justify-center rounded-lg text-foreground"
             >
@@ -105,7 +108,7 @@ function ProfileCard() {
         </svg>
 
         <img
-          src={profileImg}
+          src={profileImg.src}
           alt="Portrait of Hanzala Kareem"
           fetchPriority="high"
           className="relative z-10 mx-auto h-[var(--card-img-h)] w-[var(--card-img-w)] rounded-[16px] object-cover"

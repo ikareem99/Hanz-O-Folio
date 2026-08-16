@@ -1,6 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Layers, LayoutPanelTop } from "lucide-react";
-
 import { SiteLayout } from "@/components/site/SiteLayout";
 import {
   ExperienceSection,
@@ -11,46 +9,7 @@ import {
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { stats } from "@/data/site";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Hanzala Kareem — Machine Learning Engineer Portfolio" },
-      {
-        name: "description",
-        content:
-          "Portfolio of Hanzala Kareem, a machine learning engineer crafting intelligent solutions.",
-      },
-      { property: "og:title", content: "Hanzala Kareem — Machine Learning Engineer Portfolio" },
-      {
-        property: "og:description",
-        content:
-          "Portfolio of Hanzala Kareem, a machine learning engineer crafting intelligent solutions.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfilePage",
-          dateCreated: "2024-01-01T12:00:00+00:00",
-          dateModified: new Date().toISOString(),
-          mainEntity: {
-            "@type": "Person",
-            name: "Hanzala Kareem",
-            alternateName: "ikareem99",
-            identifier: "ikareem99",
-          },
-        }),
-      },
-    ],
-  }),
-  component: Index,
-});
-
-function Index() {
+export default function Home() {
   return (
     <SiteLayout>
       <section className="max-[1199px]:text-center">
@@ -74,7 +33,6 @@ function Index() {
                 {s.value}
               </div>
               <p className="text-[length:var(--fs-stat-label)] leading-[var(--lh-stat-label)] tracking-[var(--ls-stat-label)] text-muted-foreground uppercase">
-
                 {s.line1}
                 <br />
                 {s.line2}

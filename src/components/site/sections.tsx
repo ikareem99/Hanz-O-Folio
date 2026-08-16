@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 import { SectionTitle } from "./SiteLayout";
@@ -19,7 +19,7 @@ export function ProjectsSection({ limit }: { limit?: number }) {
               className="group flex items-center gap-5 rounded-2xl px-4 py-5 transition-colors duration-300 hover:bg-white/[0.04]"
             >
               <img
-                src={p.img}
+                src={p.img.src}
                 alt={`${p.title} project preview`}
                 loading="lazy"
                 className="h-[var(--proj-img-h)] w-[var(--proj-img-w)] shrink-0 rounded-lg object-cover transition-opacity duration-300 group-hover:opacity-85"
@@ -76,7 +76,7 @@ export function ToolsSection() {
           <ScrollReveal key={t.name} delay={0.1 + index * 0.1}>
             <a href="#" className="group flex items-center gap-4 cursor-pointer rounded-2xl px-4 py-5 transition-colors duration-300 hover:bg-white/[0.04]">
               <img
-                src={t.icon}
+                src={typeof t.icon === "string" ? t.icon : t.icon.src}
                 alt={`${t.name} logo`}
                 loading="lazy"
                 className="size-[60px] shrink-0 rounded-lg object-contain transition-transform duration-300 group-hover:scale-105"
@@ -103,8 +103,7 @@ export function PostsSection({ limit }: { limit?: number }) {
         {posts.slice(0, limit).map((p, index) => (
           <ScrollReveal key={p.slug} delay={0.1 + index * 0.1}>
             <Link
-              to="/blog/$slug"
-              params={{ slug: p.slug }}
+              href={`/blog/${p.slug}`}
               className="group flex flex-col rounded-2xl px-4 py-5 transition-colors duration-300 hover:bg-white/[0.04]"
             >
               <div className="flex items-start justify-between gap-4">

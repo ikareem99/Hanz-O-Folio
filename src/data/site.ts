@@ -56,7 +56,7 @@ export type Post = {
   excerpt: string;
   date: string;
   read: string;
-  cover: string;
+  cover: any;
   body: { heading: string; paragraphs: string[] }[];
 };
 

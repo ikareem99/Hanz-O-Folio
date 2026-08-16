@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
@@ -21,8 +23,8 @@ export function ScrollReveal({
   return (
     <motion.div
       initial={{ opacity: 0, y: yOffset }}
-      whileInView={!priority ? { opacity: 1, y: 0 } : undefined}
-      animate={priority ? { opacity: 1, y: 0 } : undefined}
+      {...(!priority ? { whileInView: { opacity: 1, y: 0 } } : {})}
+      {...(priority ? { animate: { opacity: 1, y: 0 } } : {})}
       viewport={{ once: true, margin: "-40px" }}
       transition={{
         duration,
