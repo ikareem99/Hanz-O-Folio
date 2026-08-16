@@ -107,37 +107,39 @@ function ProfileCard() {
           />
         </svg>
 
-        <img
-          src={profileImg.src}
-          alt="Portrait of Hanzala Kareem"
-          fetchPriority="high"
-          className="relative z-10 mx-auto h-[var(--card-img-h)] w-[var(--card-img-w)] rounded-[16px] object-cover"
-        />
+        <div className="relative z-10 mx-auto h-[var(--card-img-h)] w-[var(--card-img-w)]">
+          <img
+            src={profileImg.src}
+            alt="Portrait of Hanzala Kareem"
+            fetchPriority="high"
+            className="h-full w-full rounded-[16px] object-cover"
+          />
+          <div className="absolute bottom-3 left-3 z-20">
+            {/* Bottom arc: anchored relative to the badge container so they perfectly join */}
+            <svg
+              className="pointer-events-none absolute left-[-97px] top-[-14px] z-[-1] h-[100px] w-[150px]"
+              viewBox="0 0 150 100"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M 0 80 A 160 160 0 0 0 115 32"
+                stroke="var(--primary)"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+                strokeDasharray="4 14"
+                fill="none"
+              />
+            </svg>
+            <span className="flex size-9 items-center justify-center rounded-full bg-primary shadow-lg">
+              <Flame className="size-5 text-primary-foreground" />
+            </span>
+          </div>
+        </div>
         <p className="relative z-10 mt-6 text-center text-[36px] leading-[39.6px] font-bold tracking-[-0.04em]">
           Hanzala Kareem
         </p>
-        <div className="relative z-10 mt-4 flex pl-[90px]">
-          {/* Bottom arc: anchored relative to the badge container so they perfectly join on all devices */}
-          <svg
-            className="pointer-events-none absolute left-[-20px] top-0 z-[-1] h-[100px] w-[150px]"
-            viewBox="0 0 150 100"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M 0 80 A 160 160 0 0 0 115 32"
-              stroke="var(--primary)"
-              strokeWidth="3.5"
-              strokeLinecap="round"
-              strokeDasharray="4 14"
-              fill="none"
-            />
-          </svg>
-          <span className="relative -top-2 flex size-9 items-center justify-center rounded-full bg-primary">
-            <Flame className="size-5 text-primary-foreground" />
-          </span>
-        </div>
-        <p className="relative z-10 mx-auto mt-[47px] w-[300px] max-w-full text-center text-[18px] leading-[19.8px] font-medium text-[#6a6b6e]">
+        <p className="relative z-10 mx-auto mt-[30px] w-[300px] max-w-full text-center text-[18px] leading-[19.8px] font-medium text-[#6a6b6e]">
           Into AI/ML. I'm the Master of my Fate, the Captain of my Soul.
         </p>
 
