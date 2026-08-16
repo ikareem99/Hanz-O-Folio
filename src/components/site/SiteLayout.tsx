@@ -136,14 +136,14 @@ function ProfileCard() {
             </span>
           </div>
         </div>
-        <p className="relative z-10 mt-6 text-center text-[36px] leading-[39.6px] font-bold tracking-[-0.04em]">
+        <p className="relative z-10 mt-6 text-center text-[36px] max-[399px]:text-[32px] leading-[39.6px] font-bold tracking-[-0.04em]">
           Hanzala Kareem
         </p>
-        <p className="relative z-10 mx-auto mt-[30px] w-[300px] max-w-full text-center text-[18px] leading-[19.8px] font-medium text-[#6a6b6e]">
+        <p className="relative z-10 mx-auto mt-[30px] max-h-[700px]:mt-[20px] w-[300px] max-w-full text-center text-[18px] leading-[19.8px] font-medium text-[#6a6b6e]">
           Into AI/ML. I'm the Master of my Fate, the Captain of my Soul.
         </p>
 
-        <div className="relative z-10 mt-[30px] flex items-center justify-center gap-4 text-primary">
+        <div className="relative z-10 mt-[30px] max-h-[700px]:mt-[20px] flex items-center justify-center gap-4 text-primary">
           {[
             { Icon: Linkedin, href: "https://pk.linkedin.com/in/hanzala-kareem", label: "LinkedIn" },
             { Icon: Github, href: "https://github.com/ikareem99/", label: "GitHub" },
