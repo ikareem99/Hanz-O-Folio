@@ -116,8 +116,8 @@ export default function PostClient({ posts }: { posts: any[] }) {
         <Button onClick={handleOpenNew}>Add Post</Button>
       </div>
 
-      <div className="rounded-md border bg-card">
-        <table className="w-full text-sm text-left">
+      <div className="rounded-md border bg-card overflow-x-auto">
+        <table className="w-full text-sm text-left min-w-[600px]">
           <thead className="border-b bg-muted/50">
             <tr>
               <th className="p-4 font-medium w-[80px]">Priority</th>
@@ -163,7 +163,7 @@ export default function PostClient({ posts }: { posts: any[] }) {
             {/* Meta Data */}
             <div className="space-y-4 p-4 border rounded-md bg-muted/20">
               <h3 className="font-semibold">Post Details</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Title</Label>
                   <Input required value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />

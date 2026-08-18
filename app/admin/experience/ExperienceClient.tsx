@@ -66,8 +66,8 @@ export default function ExperienceClient({ experience }: { experience: any[] }) 
         <Button onClick={handleOpenNew}>Add Experience</Button>
       </div>
 
-      <div className="rounded-md border bg-card">
-        <table className="w-full text-sm text-left">
+      <div className="rounded-md border bg-card overflow-x-auto">
+        <table className="w-full text-sm text-left min-w-[600px]">
           <thead className="border-b bg-muted/50">
             <tr>
               <th className="p-4 font-medium w-[80px]">Priority</th>

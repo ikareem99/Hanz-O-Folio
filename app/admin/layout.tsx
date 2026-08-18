@@ -14,53 +14,53 @@ export default function AdminLayout({
   return (
     <div className="flex min-h-screen flex-col lg:flex-row bg-background">
       {/* Sidebar */}
-      <aside className="w-full lg:w-64 border-r border-border bg-card">
-        <div className="flex h-16 items-center border-b border-border px-6">
+      <aside className="w-full lg:w-64 border-b lg:border-r lg:border-b-0 border-border bg-card flex flex-col">
+        <div className="flex h-16 items-center border-b border-border px-6 shrink-0">
           <h2 className="text-lg font-bold text-card-foreground">Portfolio Admin</h2>
         </div>
-        <div className="flex flex-col justify-between h-[calc(100vh-4rem)] p-4">
-          <nav className="space-y-2">
-            <Link href="/admin">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <LayoutDashboard className="size-4" />
-                Dashboard
+        <div className="flex flex-col justify-between h-auto lg:h-[calc(100vh-4rem)] p-4 gap-4">
+          <nav className="flex flex-wrap gap-2 lg:flex-col lg:space-y-2 lg:gap-0">
+            <Link href="/admin" className="flex-1 lg:flex-none">
+              <Button variant="ghost" className="w-full justify-start gap-2 whitespace-nowrap">
+                <LayoutDashboard className="size-4 shrink-0" />
+                <span className="hidden sm:inline lg:inline">Dashboard</span>
               </Button>
             </Link>
-            <Link href="/admin/projects">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <FolderKanban className="size-4" />
-                Projects
+            <Link href="/admin/projects" className="flex-1 lg:flex-none">
+              <Button variant="ghost" className="w-full justify-start gap-2 whitespace-nowrap">
+                <FolderKanban className="size-4 shrink-0" />
+                <span className="hidden sm:inline lg:inline">Projects</span>
               </Button>
             </Link>
-            <Link href="/admin/experience">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Briefcase className="size-4" />
-                Experience
+            <Link href="/admin/experience" className="flex-1 lg:flex-none">
+              <Button variant="ghost" className="w-full justify-start gap-2 whitespace-nowrap">
+                <Briefcase className="size-4 shrink-0" />
+                <span className="hidden sm:inline lg:inline">Experience</span>
               </Button>
             </Link>
-            <Link href="/admin/tools">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <Wrench className="size-4" />
-                Tools
+            <Link href="/admin/tools" className="flex-1 lg:flex-none">
+              <Button variant="ghost" className="w-full justify-start gap-2 whitespace-nowrap">
+                <Wrench className="size-4 shrink-0" />
+                <span className="hidden sm:inline lg:inline">Tools</span>
               </Button>
             </Link>
-            <Link href="/admin/posts">
-              <Button variant="ghost" className="w-full justify-start gap-2">
-                <FileText className="size-4" />
-                Blog Posts
+            <Link href="/admin/posts" className="flex-1 lg:flex-none">
+              <Button variant="ghost" className="w-full justify-start gap-2 whitespace-nowrap">
+                <FileText className="size-4 shrink-0" />
+                <span className="hidden sm:inline lg:inline">Blog Posts</span>
               </Button>
             </Link>
           </nav>
           
-          <div className="pt-4 border-t border-border">
+          <div className="pt-4 border-t border-border mt-auto">
             <form action={async () => {
               'use server';
               const { logout } = await import('@/actions/auth');
               await logout();
             }}>
               <Button variant="destructive" type="submit" className="w-full justify-start gap-2">
-                <LogOut className="size-4" />
-                Logout
+                <LogOut className="size-4 shrink-0" />
+                <span className="hidden sm:inline lg:inline">Logout</span>
               </Button>
             </form>
           </div>
