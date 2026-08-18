@@ -250,11 +250,14 @@ export function ContactSection() {
 }
 
 export function SiteLayout({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
   return (
     <div className="min-h-screen bg-background">
       <NavBar />
       <div className="site-shell pb-24">
-        <aside className="lg:sticky lg:top-6 lg:self-start">
+        <aside className={`lg:sticky lg:top-6 lg:self-start ${!isHome ? 'hidden lg:block' : ''}`}>
           <ProfileCard />
         </aside>
         <main className="min-w-0 space-y-[var(--section-gap)]">
