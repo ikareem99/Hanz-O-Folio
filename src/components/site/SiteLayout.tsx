@@ -89,7 +89,7 @@ function NavBar() {
 function ProfileCard() {
   return (
     <div className="relative">
-      <div className="relative overflow-hidden rounded-[16px] bg-card px-5 py-[30px] text-card-foreground">
+      <div className="relative overflow-hidden rounded-[16px] bg-white px-5 py-[30px] text-card-foreground">
         {/* Top arc: anchored to the card's top-left, sweeping right over the photo */}
         <svg
           className="pointer-events-none absolute top-[-20px] left-[-20px] z-20 h-[170px] w-[240px]"
@@ -136,7 +136,7 @@ function ProfileCard() {
             </span>
           </div>
         </div>
-        <p className="relative z-10 mt-6 text-center text-[36px] max-[399px]:text-[32px] leading-[39.6px] font-bold tracking-[-0.04em]">
+        <p className="relative z-10 mt-6 text-center text-[36px] max-[399px]:text-[32px] leading-[39.6px] font-bold tracking-[-0.04em] text-[#000000]">
           Hanzala Kareem
         </p>
         <p className="relative z-10 mx-auto mt-[30px] max-h-[700px]:mt-[20px] w-[300px] max-w-full text-center text-[18px] leading-[19.8px] font-medium text-[#6a6b6e]">
