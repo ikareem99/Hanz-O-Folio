@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 export default function LoginPage() {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,7 @@ export default function LoginPage() {
     setLoading(true);
     setError('');
 
-    const result = await login(password);
+    const result = await login(username, password);
 
     if (result.error) {
       setError(result.error);
@@ -35,11 +36,26 @@ export default function LoginPage() {
         <div className="text-center">
           <h2 className="text-2xl font-bold text-card-foreground">Admin Login</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Enter your admin password to access the dashboard.
+            Enter your admin credentials to access the dashboard.
           </p>
         </div>
         
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="username">Username</Label>
+            <Input
+              id="username"
+              name="username"
+              type="text"
+              autoComplete="username"
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full"
+              placeholder="admin"
+            />
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
             <Input

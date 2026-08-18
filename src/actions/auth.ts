@@ -3,14 +3,15 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export async function login(password: string) {
+export async function login(username?: string, password?: string) {
+  const adminUsername = process.env.ADMIN_USERNAME || 'admin';
   const adminPassword = process.env.ADMIN_PASSWORD;
 
   if (!adminPassword) {
     return { error: 'ADMIN_PASSWORD environment variable is not set.' };
   }
 
-  if (password === adminPassword) {
+  if (username === adminUsername && password === adminPassword) {
     const cookieStore = await cookies();
     cookieStore.set('admin_token', 'authenticated', {
       httpOnly: true,
@@ -20,7 +21,7 @@ export async function login(password: string) {
     });
     return { success: true };
   } else {
-    return { error: 'Invalid password.' };
+    return { error: 'Invalid username or password.' };
   }
 }
 
