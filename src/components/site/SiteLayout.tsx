@@ -14,9 +14,10 @@ import {
   PenSquare,
   Wrench,
 } from "lucide-react";
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect, type ReactNode, useRef } from "react";
 
 import profileImg from "@/assets/profile.png";
+import { sendMessage } from "@/actions/contact";
 import {
   Select,
   SelectContent,
@@ -177,20 +178,52 @@ export function SectionTitle({ top, bottom }: { top: string; bottom: string }) {
 }
 
 export function ContactSection() {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+
   const label = "mb-[10px] block text-[12px] leading-[14.4px] font-medium text-[#888888]";
   const field =
     "h-10 w-full rounded-lg bg-heading-ghost px-3 text-[14px] leading-[16.8px] text-foreground outline-none transition-colors placeholder:text-[#999999] focus:ring-1 focus:ring-primary/60";
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setSuccess(false);
+
+    const formData = new FormData(e.currentTarget);
+    const res = await sendMessage(formData);
+
+    if (res.success) {
+      setSuccess(true);
+      formRef.current?.reset();
+    } else {
+      setError(res.error || "An error occurred");
+    }
+    setLoading(false);
+  };
 
   return (
     <section id="contact">
       <SectionTitle top="LET'S WORK" bottom="TOGETHER" />
       <form
+        ref={formRef}
         className="mt-5 space-y-5"
-        onSubmit={(e) => {
-          e.preventDefault();
-          e.currentTarget.reset();
-        }}
+        onSubmit={handleSubmit}
       >
+        <input type="text" name="website_url" className="hidden" tabIndex={-1} autoComplete="off" />
+        {success && (
+          <div className="p-4 bg-primary/10 text-primary border border-primary/20 rounded-md text-sm text-center font-medium">
+            Thanks for reaching out! I'll get back to you soon.
+          </div>
+        )}
+        {error && (
+          <div className="p-4 bg-red-500/10 text-red-500 border border-red-500/20 rounded-md text-sm text-center font-medium">
+            {error}
+          </div>
+        )}
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label htmlFor="name" className={label}>
@@ -240,9 +273,10 @@ export function ContactSection() {
         </div>
         <button
           type="submit"
-          className="h-10 w-full rounded-lg bg-primary text-[14px] leading-[16.8px] font-semibold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 hover:opacity-90"
+          disabled={loading}
+          className="h-10 w-full rounded-lg bg-primary text-[14px] leading-[16.8px] font-semibold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 hover:opacity-90 disabled:opacity-50 disabled:hover:translate-y-0"
         >
-          Submit
+          {loading ? "Sending..." : "Submit"}
         </button>
       </form>
     </section>

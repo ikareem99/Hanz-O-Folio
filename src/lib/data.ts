@@ -3,12 +3,21 @@ import Project from "@/models/Project";
 import Experience from "@/models/Experience";
 import Tool from "@/models/Tool";
 import Post from "@/models/Post";
+import Message from "@/models/Message";
 import { 
   projects as fallbackProjects, 
   experience as fallbackExperience, 
   tools as fallbackTools, 
   posts as fallbackPosts 
 } from "@/data/site";
+
+export async function getMessages() {
+  const db = await connectToDatabase();
+  if (!db) return [];
+  
+  const items = await Message.find({}).sort({ createdAt: -1 }).lean();
+  return items.length ? JSON.parse(JSON.stringify(items)) : [];
+}
 
 export async function getProjects() {
   const db = await connectToDatabase();

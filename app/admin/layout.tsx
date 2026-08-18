@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { LayoutDashboard, FolderKanban, Briefcase, Wrench, FileText, LogOut } from 'lucide-react';
+import { LayoutDashboard, FolderKanban, Briefcase, Wrench, FileText, MessageSquare, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata = {
@@ -48,6 +48,12 @@ export default function AdminLayout({
               <Button variant="ghost" className="w-full justify-start gap-2 whitespace-nowrap">
                 <FileText className="size-4 shrink-0" />
                 <span className="hidden sm:inline lg:inline">Blog Posts</span>
+              </Button>
+            </Link>
+            <Link href="/admin/messages" className="flex-1 lg:flex-none">
+              <Button variant="ghost" className="w-full justify-start gap-2 whitespace-nowrap">
+                <MessageSquare className="size-4 shrink-0" />
+                <span className="hidden sm:inline lg:inline">Messages</span>
               </Button>
             </Link>
           </nav>
