@@ -41,8 +41,8 @@ export function ProjectsSection({ limit, showSearch, items = [] }: { limit?: num
       <div>
         {displayItems.map((p, index) => (
           <ScrollReveal key={p.title || index} delay={0.1 + index * 0.1}>
-            <a
-              href="#"
+            <Link
+              href={`/projects/${p.slug}`}
               className="group flex items-center gap-5 rounded-2xl px-4 py-5 transition-colors duration-300 hover:bg-white/[0.04]"
             >
               <img
@@ -56,7 +56,7 @@ export function ProjectsSection({ limit, showSearch, items = [] }: { limit?: num
                 <p className="mt-1 t-body text-muted-foreground">{p.subtitle}</p>
               </div>
               <ArrowUpRight className="size-6 shrink-0 text-primary transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
-            </a>
+            </Link>
           </ScrollReveal>
         ))}
       </div>

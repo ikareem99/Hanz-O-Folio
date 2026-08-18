@@ -49,3 +49,19 @@ export async function getPostById(id: string) {
   const item = await Post.findById(id).lean();
   return item ? JSON.parse(JSON.stringify(item)) : null;
 }
+
+export async function getProjectById(id: string) {
+  const db = await connectToDatabase();
+  if (!db) return null;
+  
+  const item = await Project.findById(id).lean();
+  return item ? JSON.parse(JSON.stringify(item)) : null;
+}
+
+export async function getProjectBySlug(slug: string) {
+  const db = await connectToDatabase();
+  if (!db) return null;
+  
+  const item = await Project.findOne({ slug }).lean();
+  return item ? JSON.parse(JSON.stringify(item)) : null;
+}
