@@ -1,5 +1,6 @@
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ExperienceSection } from "@/components/site/sections";
+import { getExperience } from "@/lib/data";
 
 export const metadata = {
   title: "Experience — Hanzala Kareem",
@@ -14,10 +15,12 @@ export const metadata = {
   },
 };
 
-export default function ExperiencePage() {
+export default async function ExperiencePage() {
+  const experienceData = await getExperience();
+
   return (
     <SiteLayout>
-      <ExperienceSection />
+      <ExperienceSection showSearch items={experienceData} />
     </SiteLayout>
   );
 }

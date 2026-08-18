@@ -1,5 +1,6 @@
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ProjectsSection } from "@/components/site/sections";
+import { getProjects } from "@/lib/data";
 
 export const metadata = {
   title: "Projects — Hanzala Kareem",
@@ -22,14 +23,16 @@ const jsonLd = {
   url: "https://ikareem.netlify.app/projects",
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projectsData = await getProjects();
+
   return (
     <SiteLayout>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ProjectsSection />
+      <ProjectsSection showSearch items={projectsData} />
     </SiteLayout>
   );
 }

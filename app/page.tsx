@@ -8,8 +8,14 @@ import {
 } from "@/components/site/sections";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { stats } from "@/data/site";
+import { getExperience, getPosts, getProjects, getTools } from "@/lib/data";
 
-export default function Home() {
+export default async function Home() {
+  const projectsData = await getProjects();
+  const experienceData = await getExperience();
+  const toolsData = await getTools();
+  const postsData = await getPosts();
+
   return (
     <SiteLayout>
       <section className="max-[1199px]:text-center">
@@ -71,10 +77,10 @@ export default function Home() {
         </div>
       </section>
 
-      <ProjectsSection limit={3} />
-      <ExperienceSection limit={3} />
-      <ToolsSection />
-      <PostsSection limit={3} />
+      <ProjectsSection limit={3} items={projectsData} />
+      <ExperienceSection limit={3} items={experienceData} />
+      <ToolsSection limit={6} items={toolsData} />
+      <PostsSection limit={3} items={postsData} />
     </SiteLayout>
   );
 }

@@ -1,5 +1,6 @@
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ToolsSection } from "@/components/site/sections";
+import { getTools } from "@/lib/data";
 
 export const metadata = {
   title: "Tools — Hanzala Kareem",
@@ -22,14 +23,16 @@ const jsonLd = {
   url: "https://ikareem.netlify.app/tools",
 };
 
-export default function ToolsPage() {
+export default async function ToolsPage() {
+  const toolsData = await getTools();
+
   return (
     <SiteLayout>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ToolsSection />
+      <ToolsSection showSearch items={toolsData} />
     </SiteLayout>
   );
 }

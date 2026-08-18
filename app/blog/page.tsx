@@ -1,5 +1,6 @@
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PostsSection } from "@/components/site/sections";
+import { getPosts } from "@/lib/data";
 
 export const metadata = {
   title: "Personal Thoughts — Hanzala Kareem",
@@ -26,14 +27,16 @@ const jsonLd = {
   },
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const postsData = await getPosts();
+
   return (
     <SiteLayout>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <PostsSection />
+      <PostsSection showSearch enablePagination items={postsData} />
     </SiteLayout>
   );
 }

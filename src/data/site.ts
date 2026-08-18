@@ -25,10 +25,10 @@ export const stats = [
 ];
 
 export const projects = [
-  { img: najmaiImg, title: "LudoT", subtitle: "Automated Ludo Playing Robot (Python + C++)" },
-  { img: damasImg, title: "Movie Manager", subtitle: "Recommendation System in C++" },
-  { img: majdImg, title: "RUSH HOUR", subtitle: "2D Driving Simulation (C++)" },
-  { img: faseelhImg, title: "Nike/Movie App", subtitle: "React.js & Tailwind CSS" },
+  { img: najmaiImg, title: "LudoT", subtitle: "Automated Ludo Playing Robot (Python + C++)", keywords: ["robotics", "python", "c++", "ai", "machine learning", "coding"] },
+  { img: damasImg, title: "Movie Manager", subtitle: "Recommendation System in C++", keywords: ["recommendation", "c++", "data structures", "coding"] },
+  { img: majdImg, title: "RUSH HOUR", subtitle: "2D Driving Simulation (C++)", keywords: ["simulation", "game", "c++", "coding"] },
+  { img: faseelhImg, title: "Nike/Movie App", subtitle: "React.js & Tailwind CSS", keywords: ["react", "tailwind", "frontend", "web", "coding"] },
 ];
 
 export const experience = [
@@ -37,17 +37,18 @@ export const experience = [
     description:
       "Remotely Worked as an Associate Software Engineer and Jr. Data Scientist, focusing on machine learning and scalable solutions.",
     period: "Jun 2025 - Present",
+    keywords: ["software engineer", "data scientist", "machine learning", "coding", "ai", "python"]
   },
 ];
 
 export const tools = [
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", name: "Python", role: "Core Language" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg", name: "C++", role: "Systems & Logic" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg", name: "Pandas", role: "Data Analysis" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg", name: "NumPy", role: "Numerical Computing" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", name: "VS Code", role: "Code Editor" },
-  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg", name: "Jupyter", role: "Notebooks" },
-  { icon: chatgptIcon, name: "ChatGPT", role: "AI Assistant" },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", name: "Python", role: "Core Language", keywords: ["coding", "language", "backend", "machine learning", "ml", "ai"] },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg", name: "C++", role: "Systems & Logic", keywords: ["coding", "language", "system", "performance"] },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg", name: "Pandas", role: "Data Analysis", keywords: ["data analysis", "python", "library", "coding"] },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg", name: "NumPy", role: "Numerical Computing", keywords: ["numerical computing", "python", "library", "coding"] },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", name: "VS Code", role: "Code Editor", keywords: ["editor", "ide", "coding", "development"] },
+  { icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg", name: "Jupyter", role: "Notebooks", keywords: ["notebooks", "coding", "data science", "python"] },
+  { icon: chatgptIcon, name: "ChatGPT", role: "AI Assistant", keywords: ["ai", "assistant", "productivity", "generative"] },
 ];
 
 export type Post = {
@@ -57,6 +58,7 @@ export type Post = {
   date: string;
   read: string;
   cover: any;
+  keywords?: string[];
   body: { heading: string; paragraphs: string[] }[];
 };
 
@@ -69,6 +71,7 @@ export const posts: Post[] = [
     date: "Aug 15, 2026",
     read: "5min read",
     cover: blog1,
+    keywords: ["robotics", "c++", "python", "ai", "coding"],
     body: [
       {
         heading: "The Concept",
@@ -93,6 +96,7 @@ export const posts: Post[] = [
     date: "Jul 22, 2026",
     read: "8min read",
     cover: blog2,
+    keywords: ["c++", "data structures", "algorithms", "coding", "recommendation"],
     body: [
       {
         heading: "Why Data Structures Matter",
@@ -116,6 +120,7 @@ export const posts: Post[] = [
     date: "May 10, 2026",
     read: "6min read",
     cover: blog3,
+    keywords: ["c++", "simulation", "gaming", "coding"],
     body: [
       {
         heading: "Performance is Key",
