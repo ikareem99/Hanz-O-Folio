@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, Layers, LayoutPanelTop } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import {
@@ -49,7 +50,7 @@ export default async function Home() {
 
         <div className="mt-[60px] grid gap-[30px] text-left sm:grid-cols-[300fr_366fr]">
           <ScrollReveal delay={0.4} className="h-full">
-            <article className="wave-pattern group relative flex h-[240px] flex-col justify-between overflow-hidden rounded-[10px] bg-primary p-5 text-primary-foreground transition-transform duration-300 hover:-translate-y-1">
+            <Link href="/experience" className="block wave-pattern group relative flex h-[240px] flex-col justify-between overflow-hidden rounded-[10px] bg-primary p-5 text-primary-foreground transition-transform duration-300 hover:-translate-y-1">
               <Layers className="size-7" strokeWidth={1.8} />
               <div className="flex items-end justify-between gap-4">
                 <h3 className="max-w-[260px] text-[24px] leading-[1.1] font-medium uppercase">
@@ -59,10 +60,10 @@ export default async function Home() {
                   <ArrowRight className="size-4" />
                 </span>
               </div>
-            </article>
+            </Link>
           </ScrollReveal>
           <ScrollReveal delay={0.5} className="h-full">
-            <article className="zigzag-pattern group relative flex h-[240px] flex-col justify-between overflow-hidden rounded-[10px] bg-lime p-5 text-lime-foreground transition-transform duration-300 hover:-translate-y-1">
+            <Link href="/projects" className="block zigzag-pattern group relative flex h-[240px] flex-col justify-between overflow-hidden rounded-[10px] bg-lime p-5 text-lime-foreground transition-transform duration-300 hover:-translate-y-1">
               <LayoutPanelTop className="size-7" strokeWidth={1.8} />
               <div className="flex items-end justify-between gap-4">
                 <h3 className="max-w-[300px] text-[24px] leading-[1.1] font-medium uppercase">
@@ -72,7 +73,7 @@ export default async function Home() {
                   <ArrowRight className="size-4" />
                 </span>
               </div>
-            </article>
+            </Link>
           </ScrollReveal>
         </div>
       </section>
