@@ -6,8 +6,11 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Textarea } from '@/components/ui/textarea';
 import { createPost, updatePost, uploadImage } from '@/actions/admin';
 import ImageInput from '../../components/ImageInput';
+import { marked } from 'marked';
 
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 
@@ -19,6 +22,8 @@ export default function PostEditor({ initialData }: PostEditorProps) {
   const router = useRouter();
   const quillRef = useRef<any>(null);
   const [loading, setLoading] = useState(false);
+  const [pasteModalOpen, setPasteModalOpen] = useState(false);
+  const [pastedMarkdown, setPastedMarkdown] = useState('');
   
   const [formData, setFormData] = useState({
     slug: initialData?.slug || '',
@@ -119,6 +124,48 @@ export default function PostEditor({ initialData }: PostEditorProps) {
     };
   }, []);
 
+  const handleMarkdownUpload = useCallback(() => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', '.md,text/markdown');
+    input.click();
+
+    input.onchange = async () => {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        try {
+          const text = await file.text();
+          // parse markdown to HTML
+          const html = await marked.parse(text);
+          // Append or replace the current content
+          setFormData(prev => ({
+            ...prev,
+            content: prev.content ? prev.content + '<br/>' + html : html
+          }));
+        } catch (error) {
+          console.error("Failed to parse markdown", error);
+          alert('Error reading markdown file');
+        }
+      }
+    };
+  }, []);
+
+  const handleMarkdownPaste = async () => {
+    if (!pastedMarkdown.trim()) return;
+    try {
+      const html = await marked.parse(pastedMarkdown);
+      setFormData(prev => ({
+        ...prev,
+        content: prev.content ? prev.content + '<br/>' + html : html
+      }));
+      setPasteModalOpen(false);
+      setPastedMarkdown('');
+    } catch (error) {
+      console.error("Failed to parse pasted markdown", error);
+      alert('Error reading pasted markdown');
+    }
+  };
+
   const modules = useMemo(() => ({
     toolbar: {
       container: [
@@ -196,7 +243,38 @@ export default function PostEditor({ initialData }: PostEditorProps) {
 
       {/* Content Builder */}
       <div className="space-y-4">
-        <h3 className="font-semibold text-lg">Post Content</h3>
+        <div className="flex justify-between items-center">
+          <h3 className="font-semibold text-lg">Post Content</h3>
+          <div className="flex gap-2">
+            <Button type="button" variant="secondary" onClick={handleMarkdownUpload} size="sm">
+              Upload .md File
+            </Button>
+            <Dialog open={pasteModalOpen} onOpenChange={setPasteModalOpen}>
+              <DialogTrigger asChild>
+                <Button type="button" variant="secondary" size="sm">
+                  Paste Markdown
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-3xl">
+                <DialogHeader>
+                  <DialogTitle>Paste Markdown</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 pt-4">
+                  <Textarea 
+                    placeholder="Paste your raw Markdown here..."
+                    className="min-h-[400px] font-mono text-sm"
+                    value={pastedMarkdown}
+                    onChange={(e) => setPastedMarkdown(e.target.value)}
+                  />
+                  <div className="flex justify-end gap-2">
+                    <Button type="button" variant="outline" onClick={() => setPasteModalOpen(false)}>Cancel</Button>
+                    <Button type="button" onClick={handleMarkdownPaste}>Insert Markdown</Button>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
+        </div>
         
         <div className="bg-card text-foreground rounded-md overflow-hidden border flex flex-col">
           <style dangerouslySetInnerHTML={{__html: `
