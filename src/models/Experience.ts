@@ -5,6 +5,7 @@ const ExperienceSchema = new mongoose.Schema({
   description: { type: String, required: true },
   period: { type: String, required: true },
   keywords: { type: [String], default: [] },
+  priority: { type: Number, default: 0 },
 }, { timestamps: true });
 
 export default mongoose.models.Experience || mongoose.model('Experience', ExperienceSchema);

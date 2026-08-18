@@ -11,7 +11,8 @@ const PostSchema = new mongoose.Schema({
   body: [{
     heading: { type: String, required: true },
     paragraphs: { type: [String], required: true }
-  }]
+  }],
+  priority: { type: Number, default: 0 }
 }, { timestamps: true });
 
 export default mongoose.models.Post || mongoose.model('Post', PostSchema);

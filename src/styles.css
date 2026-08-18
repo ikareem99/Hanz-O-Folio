@@ -44,8 +44,8 @@
   --background: rgb(21, 19, 18);
   --foreground: rgb(255, 255, 255);
   --surface: rgba(255, 255, 255, 0.05);
-  --card: rgb(255, 255, 255);
-  --card-foreground: rgb(0, 0, 0);
+  --card: rgb(30, 28, 27);
+  --card-foreground: rgb(255, 255, 255);
   --popover: rgb(30, 28, 27);
   --popover-foreground: rgb(255, 255, 255);
   --primary: rgb(244, 108, 56);

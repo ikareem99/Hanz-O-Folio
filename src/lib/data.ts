@@ -14,7 +14,7 @@ export async function getProjects() {
   const db = await connectToDatabase();
   if (!db) return fallbackProjects;
   
-  const items = await Project.find({}).lean();
+  const items = await Project.find({}).sort({ priority: 1 }).lean();
   return items.length ? JSON.parse(JSON.stringify(items)) : fallbackProjects;
 }
 
@@ -22,7 +22,7 @@ export async function getExperience() {
   const db = await connectToDatabase();
   if (!db) return fallbackExperience;
   
-  const items = await Experience.find({}).lean();
+  const items = await Experience.find({}).sort({ priority: 1 }).lean();
   return items.length ? JSON.parse(JSON.stringify(items)) : fallbackExperience;
 }
 
@@ -30,7 +30,7 @@ export async function getTools() {
   const db = await connectToDatabase();
   if (!db) return fallbackTools;
   
-  const items = await Tool.find({}).lean();
+  const items = await Tool.find({}).sort({ priority: 1 }).lean();
   return items.length ? JSON.parse(JSON.stringify(items)) : fallbackTools;
 }
 
@@ -38,6 +38,6 @@ export async function getPosts() {
   const db = await connectToDatabase();
   if (!db) return fallbackPosts;
   
-  const items = await Post.find({}).lean();
+  const items = await Post.find({}).sort({ priority: 1 }).lean();
   return items.length ? JSON.parse(JSON.stringify(items)) : fallbackPosts;
 }
