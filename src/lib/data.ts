@@ -41,3 +41,11 @@ export async function getPosts() {
   const items = await Post.find({}).sort({ priority: 1 }).lean();
   return items.length ? JSON.parse(JSON.stringify(items)) : fallbackPosts;
 }
+
+export async function getPostById(id: string) {
+  const db = await connectToDatabase();
+  if (!db) return null;
+  
+  const item = await Post.findById(id).lean();
+  return item ? JSON.parse(JSON.stringify(item)) : null;
+}

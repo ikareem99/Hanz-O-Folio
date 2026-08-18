@@ -7,11 +7,15 @@ const PostSchema = new mongoose.Schema({
   date: { type: String, required: true },
   read: { type: String, required: true },
   coverSrc: { type: String, required: true }, // Store string path
+  content: { type: String, default: '' },
   keywords: { type: [String], default: [] },
-  body: [{
-    heading: { type: String, required: true },
-    paragraphs: { type: [String], required: true }
-  }],
+  body: {
+    type: [{
+      heading: { type: String, required: true },
+      paragraphs: { type: [String], required: true }
+    }],
+    default: undefined
+  },
   priority: { type: Number, default: 0 }
 }, { timestamps: true });
 

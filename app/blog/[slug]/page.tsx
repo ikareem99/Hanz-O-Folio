@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { posts } from "@/data/site";
+import { getPosts } from "@/lib/data";
 
 interface PageProps {
   params: Promise<{
@@ -12,13 +12,16 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = posts.find((p) => p.slug === slug);
+  const posts = await getPosts();
+  const post = posts.find((p: any) => p.slug === slug);
   if (!post) {
     return {
       title: "Not found — Hanzala Kareem",
       robots: { index: false },
     };
   }
+
+  const coverSrc = post.coverSrc || (post.cover && post.cover.src);
 
   return {
     title: `${post.title} — Hanzala Kareem`,
@@ -29,28 +32,31 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       publishedTime: new Date(post.date).toISOString(),
       authors: ["Hanzala Kareem"],
-      images: [{ url: post.cover.src }],
+      images: [{ url: coverSrc }],
     },
     twitter: {
       card: "summary_large_image",
-      images: [post.cover.src],
+      images: [coverSrc],
     },
   };
 }
 
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = posts.find((p) => p.slug === slug);
+  const posts = await getPosts();
+  const post = posts.find((p: any) => p.slug === slug);
 
   if (!post) {
     notFound();
   }
 
+  const coverSrc = post.coverSrc || (post.cover && post.cover.src);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
-    image: post.cover.src,
+    image: coverSrc,
     datePublished: new Date(post.date).toISOString(),
     author: {
       "@type": "Person",
@@ -66,7 +72,7 @@ export default async function PostPage({ params }: PageProps) {
       />
       <article>
         <img
-          src={post.cover.src}
+          src={coverSrc}
           alt={post.title}
           className="h-[430px] w-full rounded-lg object-cover"
         />
@@ -79,20 +85,34 @@ export default async function PostPage({ params }: PageProps) {
         </h1>
 
         <div className="mt-14 space-y-12">
-          {post.body.map((block) => (
-            <section key={block.heading}>
-              <h2 className="text-[32px] leading-[1.2] font-bold tracking-[-0.02em]">
-                {block.heading}
-              </h2>
-              <div className="mt-5 space-y-5">
-                {block.paragraphs.map((text) => (
-                  <p key={text.slice(0, 24)} className="text-[18px] leading-[1.6] text-white/85">
-                    {text}
-                  </p>
-                ))}
-              </div>
-            </section>
-          ))}
+          {post.content ? (
+            <div 
+              className="prose prose-invert prose-lg max-w-none 
+                prose-p:text-[18px] prose-p:leading-[1.6] prose-p:text-white/85 
+                prose-headings:font-bold prose-headings:tracking-[-0.02em]
+                prose-h2:text-[32px] prose-h2:leading-[1.2] prose-h2:mt-12
+                prose-h3:text-[24px] prose-h3:mt-8
+                prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                prose-img:rounded-lg prose-img:w-full"
+              dangerouslySetInnerHTML={{ __html: post.content }} 
+            />
+          ) : (
+            // Fallback for old posts that weren't migrated
+            post.body?.map((block: any) => (
+              <section key={block.heading}>
+                <h2 className="text-[32px] leading-[1.2] font-bold tracking-[-0.02em]">
+                  {block.heading}
+                </h2>
+                <div className="mt-5 space-y-5">
+                  {block.paragraphs.map((text: string) => (
+                    <p key={text.slice(0, 24)} className="text-[18px] leading-[1.6] text-white/85">
+                      {text}
+                    </p>
+                  ))}
+                </div>
+              </section>
+            ))
+          )}
         </div>
       </article>
     </SiteLayout>
