@@ -1,0 +1,28 @@
+<p>IoT sensor data looks like a stream of timestamps and numbers, but a trustworthy pipeline has to answer harder questions: which device produced this value, when was it measured, did it arrive late, which unit was used, and can the result be traced back to the raw event?</p>
+
+<h2>Define the Event Contract</h2>
+<p>Every event needs a stable device identifier, event timestamp, ingestion timestamp, measurement name, value, unit, and schema version. Optional metadata may include firmware version, location, sequence number, or quality flag.</p>
+<p>A versioned schema prevents producers and consumers from silently disagreeing. New fields can be additive, while breaking changes require an explicit migration path. Validation should happen at the boundary so malformed events are separated before they affect aggregates.</p>
+
+<h2>Event Time and Arrival Time Are Different</h2>
+<p>A sensor may record a value while offline and transmit it later. The event timestamp describes the measurement; the ingestion timestamp describes when the platform received it. Using only arrival time can place delayed readings in the wrong window.</p>
+<p>All timestamps should carry a timezone or use UTC. Devices with unreliable clocks need a correction policy and a visible quality flag rather than a hidden adjustment.</p>
+
+<h2>Handle Duplicates and Ordering</h2>
+<p>Networks retry. Gateways reconnect. The same event may arrive more than once. A device ID combined with a sequence number or event ID provides an idempotency key so the pipeline can recognise duplicates.</p>
+<p>Events may also arrive out of order. Windowed calculations need a lateness policy: accept late data and update previous results, route it to a correction process, or reject it after a defined threshold. The choice depends on how quickly results are needed and how costly corrections are.</p>
+
+<h2>Validate Values in Context</h2>
+<p>A fixed range catches impossible values, but anomalies depend on context. A temperature of 45°C may be normal for a machine and alarming for a refrigerator. Validation rules should include device type, location, operating mode, and expected sampling interval.</p>
+<p>Rate-of-change checks catch sudden jumps even when both values are individually within range. Stuck-sensor checks detect long runs of identical measurements. Cross-sensor checks compare related signals, such as temperature and power consumption.</p>
+
+<h2>Preserve Raw and Curated Layers</h2>
+<p>The raw layer stores events as received, including invalid or late records. A curated layer applies schema normalisation, unit conversion, deduplication, and quality flags. Aggregated layers provide hourly or daily statistics for analysis.</p>
+<p>This separation makes correction possible. If a conversion rule changes, the curated data can be rebuilt from raw events instead of relying on an already-modified file.</p>
+
+<h2>Observe the Pipeline, Not Just the Devices</h2>
+<p>Operational metrics should track event rate, validation failures, duplicate rate, lateness, queue depth, processing delay, and missing-device intervals. A dashboard that displays sensor values but ignores pipeline health can make missing data look like a normal condition.</p>
+<p>Lineage connects an output back to its source events, schema version, and transformation version. This is especially important when the data supports maintenance decisions or machine-learning models.</p>
+
+<h2>Trust Comes from Visible Assumptions</h2>
+<p>No pipeline can guarantee that every sensor is correct. It can make uncertainty explicit. Quality flags, quarantine outputs, late-data policies, versioned transformations, and reproducible aggregates allow users to judge whether a result is fit for their decision.</p>

@@ -1,0 +1,24 @@
+<p>Rush Hour is a two-dimensional driving game built in C++. The project focuses on the mechanics that make an interactive simulation feel coherent: continuous input, time-based movement, collision rules, game state, scoring, and a rendering loop that turns internal data into visible action.</p>
+
+<h2>Structuring the Game Loop</h2>
+<p>A real-time game repeatedly reads input, updates the world, and draws the latest state. Keeping those phases separate prevents rendering code from quietly changing gameplay and makes movement rules easier to test. The player object stores its own position and movement state, while the wider game state tracks obstacles, goals, score, and whether the session is active or complete.</p>
+<p>Time is part of the model. If movement is tied only to the number of frames, the game runs at different speeds on different machines. Using elapsed time to scale motion produces more consistent behaviour and makes speed values meaningful.</p>
+
+<h2>Movement and Boundaries</h2>
+<p>Driving input has to feel immediate without allowing the vehicle to leave the playable area. Each update converts keyboard input into a proposed change in position, then checks that proposal against road boundaries and occupied space. Applying constraints before committing the position keeps invalid states out of the rest of the system.</p>
+<p>Movement can be represented with simple vectors even in a basic 2D project. Position, direction, and speed become explicit values, which makes turning, acceleration, and collision response easier to reason about than a collection of unrelated coordinate changes.</p>
+
+<h2>Collision Detection as a Rule System</h2>
+<p>Collision detection begins with a clear representation of object bounds. Axis-aligned rectangles are often enough for vehicles and obstacles in a top-down game. The engine checks whether the player's proposed bounds overlap another object's bounds, then applies the correct result: stop movement, reduce a score, reset a position, or mark an objective as reached.</p>
+<p>The difficult part is not the overlap formula; it is deciding when and where collisions should be checked. Centralising collision rules prevents one obstacle type from behaving differently because it was implemented in a separate input handler or drawing function.</p>
+
+<h2>Managing Game State</h2>
+<p>Rush Hour benefits from explicit states such as menu, playing, paused, completed, and game over. Each state accepts only the inputs that make sense for it. This avoids errors such as updating the vehicle while the game is paused or continuing to add points after completion.</p>
+<p>Score and progression should also respond to named events rather than arbitrary frame conditions. Reaching a destination, avoiding a penalty, or completing an objective can produce one event that updates the score exactly once. This approach prevents duplicated rewards when a condition remains true for several frames.</p>
+
+<h2>Testing and Iteration</h2>
+<p>Visual testing is essential for a game, but core logic can still be checked independently. Boundary tests place the car at each edge and attempt to move beyond it. Collision tests use known rectangles that should overlap or remain separate. State tests verify that pause and reset actions produce predictable results.</p>
+<p>The project remains a focused 2D game rather than a full vehicle simulation. Advanced physics, complex traffic behaviour, networked play, and large levels would require additional systems. A useful next step would introduce component-based game objects, a data-driven level format, and automated tests for collision and scoring rules.</p>
+
+<h2>What This Project Demonstrates</h2>
+<p>Rush Hour uses C++ to connect object-oriented design, real-time updates, input handling, collision detection, and state management. Building a playable loop makes abstract programming concepts immediately visible: every data-model decision changes how the game behaves.</p>

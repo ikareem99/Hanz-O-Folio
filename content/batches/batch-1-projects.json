@@ -1,0 +1,106 @@
+{
+  "updates": {
+    "projects": [
+      {
+        "id": "6a83d8ead40fcf48060d5c77",
+        "data": {
+          "title": "LudoT",
+          "slug": "ludot",
+          "subtitle": "Automated Ludo-Playing Robot Built with Python and C++",
+          "imgSrc": "/assets/najmai.jpeg",
+          "keywords": ["robotics", "python", "c++", "automation", "game logic"],
+          "priority": 30
+        }
+      },
+      {
+        "id": "6a83d8ead40fcf48060d5c78",
+        "data": {
+          "title": "Movie Manager",
+          "slug": "movie-manager",
+          "subtitle": "C++ Movie Management and Recommendation System",
+          "imgSrc": "/assets/damas.png",
+          "keywords": ["recommendation systems", "c++", "data structures", "algorithms"],
+          "priority": 40
+        }
+      },
+      {
+        "id": "6a83d8ead40fcf48060d5c79",
+        "data": {
+          "title": "Rush Hour",
+          "slug": "rush-hour",
+          "subtitle": "Two-Dimensional Driving Game Built in C++",
+          "imgSrc": "/assets/majd.png",
+          "keywords": ["c++", "game development", "simulation", "game logic"],
+          "priority": 50
+        }
+      },
+      {
+        "id": "6a83d8ead40fcf48060d5c7a",
+        "data": {
+          "title": "Nike App",
+          "slug": "nike-app",
+          "subtitle": "Responsive Product Interface Built with React and Tailwind CSS",
+          "imgSrc": "/assets/projects/nike-app.svg",
+          "keywords": ["react", "tailwind css", "javascript", "frontend", "responsive design"],
+          "priority": 60
+        }
+      }
+    ],
+    "experience": [
+      {
+        "id": "6a83d8ead40fcf48060d5c7b",
+        "data": {
+          "company": "Synergy Flow Labs",
+          "description": "Worked remotely as a Junior Data Scientist, cleaning and analyzing data with Python, building and evaluating machine learning models for business use cases, and documenting findings to improve data workflows.",
+          "period": "Jun 2025 - Jan 2026",
+          "keywords": ["junior data scientist", "python", "machine learning", "data analysis", "data preprocessing", "remote collaboration"],
+          "priority": 10
+        }
+      }
+    ]
+  },
+  "creates": {
+    "projects": [
+      {
+        "title": "RideFlow",
+        "slug": "rideflow",
+        "subtitle": "Full-Stack Ride-Hailing Platform with Next.js, TypeScript, and MySQL",
+        "imgSrc": "/assets/projects/rideflow.svg",
+        "keywords": ["next.js", "typescript", "mysql", "mapbox", "ride hailing", "full stack"],
+        "priority": 10
+      },
+      {
+        "title": "Parallel CSV Data Processing Pipeline",
+        "slug": "parallel-csv-data-processing-pipeline",
+        "subtitle": "C++ and POSIX Pipeline for Parallel IoT Sensor Log Processing",
+        "imgSrc": "/assets/projects/csv-pipeline.svg",
+        "keywords": ["c++", "operating systems", "parallel processing", "posix", "iot", "csv"],
+        "priority": 20
+      },
+      {
+        "title": "Movie App",
+        "slug": "react-movie-app",
+        "subtitle": "React Movie Discovery App Powered by TMDb and Appwrite",
+        "imgSrc": "/assets/projects/movie-app.svg",
+        "keywords": ["react", "javascript", "tailwind css", "tmdb", "appwrite", "api"],
+        "priority": 70
+      },
+      {
+        "title": "Character Counter",
+        "slug": "character-counter",
+        "subtitle": "Real-Time Text Analysis Tool Built with React and Tailwind CSS",
+        "imgSrc": "/assets/projects/character-counter.svg",
+        "keywords": ["react", "javascript", "tailwind css", "text analysis", "frontend"],
+        "priority": 80
+      },
+      {
+        "title": "Word Shooter",
+        "slug": "word-shooter",
+        "subtitle": "C++ Word Puzzle Game with Dictionary Matching and Score Tracking",
+        "imgSrc": "/assets/projects/word-shooter.svg",
+        "keywords": ["c++", "game development", "dictionary", "algorithms", "opengl"],
+        "priority": 90
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">RideFlow project cover</title><desc id="desc">A stylized city map with a highlighted ride route and car marker.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071522"/><stop offset="1" stop-color="#123f50"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="18" flood-opacity=".35"/></filter></defs>
+  <rect width="1200" height="675" fill="url(#bg)"/><g opacity=".2" stroke="#b6e4df" stroke-width="3"><path d="M0 135h1200M0 300h1200M0 500h1200M180 0v675M430 0v675M770 0v675M1010 0v675"/><path d="M0 580L1200 90M0 80l1200 430"/></g>
+  <path d="M180 500C280 490 315 365 430 382S620 500 740 410s150-215 295-190" fill="none" stroke="#38e1c1" stroke-width="18" stroke-linecap="round" stroke-dasharray="2 34"/>
+  <g filter="url(#shadow)"><circle cx="183" cy="500" r="32" fill="#fff"/><circle cx="183" cy="500" r="17" fill="#38e1c1"/><path d="M1002 176c-55 0-92 42-92 91 0 66 92 151 92 151s92-85 92-151c0-49-37-91-92-91z" fill="#ffcc5c"/><circle cx="1002" cy="267" r="34" fill="#071522"/></g>
+  <g transform="translate(555 316)" filter="url(#shadow)"><rect width="176" height="92" rx="28" fill="#f7faf9"/><path d="M35 45l18-27h69l20 27" fill="none" stroke="#123f50" stroke-width="12" stroke-linecap="round"/><circle cx="48" cy="84" r="16" fill="#123f50"/><circle cx="132" cy="84" r="16" fill="#123f50"/></g>
+  <text x="70" y="102" fill="#fff" font-family="Arial, sans-serif" font-weight="700" font-size="54">RideFlow</text><text x="72" y="148" fill="#a8d8d2" font-family="Arial, sans-serif" font-size="24">FULL-STACK RIDE-HAILING PLATFORM</text>
+</svg>

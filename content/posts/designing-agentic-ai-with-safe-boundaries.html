@@ -1,0 +1,32 @@
+<p>An AI agent becomes more useful when it can call tools, change files, query systems, or trigger workflows. The same capability increases risk. Safe agent design begins by limiting what the system can do, making important actions visible, and ensuring that failure leads to a controlled state.</p>
+
+<h2>Define the Job and the Stop Condition</h2>
+<p>An agent needs a concrete objective, available evidence, and a definition of completion. “Handle support” is too broad. “Classify this ticket, retrieve relevant policy, draft a response, and stop before sending” creates a bounded workflow.</p>
+<p>Set limits on turns, tool calls, time, and cost. A loop without a stop condition can repeat searches, create duplicate actions, or consume resources without improving the result.</p>
+
+<h2>Grant the Minimum Tool Access</h2>
+<p>Tools should expose narrow operations with typed inputs. A function that retrieves one order is safer than unrestricted database access. A draft-message tool is safer than a send-message tool when the expected output needs human review.</p>
+<p>Use separate credentials for the agent, with permissions limited to its role. Read operations and write operations should be distinct so policy can treat them differently.</p>
+
+<h2>Validate Every Tool Call</h2>
+<p>The model proposes an action; ordinary code decides whether that action is valid. Schemas check types and required fields. Business rules check ownership, status, limits, and allowed transitions. Idempotency keys prevent a retry from creating the same side effect twice.</p>
+<p>Never rely on a natural-language prompt as the only protection for payments, deletion, permission changes, or external communication.</p>
+
+<h2>Use Approval Gates for Consequential Actions</h2>
+<p>Some actions should pause for a person: sending a message, publishing content, changing access, spending money, or deleting data. The approval view should show the exact action, target, important arguments, and evidence used.</p>
+<p>Approval is most useful at the final boundary. The agent can gather context and prepare a complete draft first, reducing the human role to a meaningful decision instead of repeated interruptions.</p>
+
+<h2>Treat Retrieved Content as Untrusted</h2>
+<p>Documents and web pages can contain instructions that conflict with the user's goal. Retrieval provides data, not authority. Keep system policy separate from retrieved text, label sources, and prevent content from silently expanding permissions.</p>
+<p>Tool results also need size limits and sanitisation. An unexpected response should not overflow context or be interpreted as a new policy.</p>
+
+<h2>Make State and Recovery Explicit</h2>
+<p>Long workflows need checkpoints. Record completed steps, tool results, pending approvals, and created resource IDs. On retry, the agent should resume from verified state rather than repeating every action.</p>
+<p>Compensating actions help when a multi-step workflow partially fails. If a reservation was created but notification failed, the system should know whether to retry the notification or cancel the reservation according to product rules.</p>
+
+<h2>Trace Decisions and Evaluate Outcomes</h2>
+<p>Logs should connect user intent, model output, tool calls, validation results, approvals, and final state. Redact secrets while preserving enough evidence to investigate failures.</p>
+<p>Evaluation should include successful tasks, ambiguous instructions, unavailable tools, malicious content, timeouts, duplicate requests, and denied actions. Measure task completion alongside unsafe-action rate, approval frequency, latency, and cost.</p>
+
+<h2>Autonomy Should Be Earned</h2>
+<p>Start with read-only or draft workflows. Expand permissions only after traces and evaluations show reliable behaviour. Safe boundaries do not reduce the usefulness of an agent; they make useful behaviour repeatable and failures recoverable.</p>

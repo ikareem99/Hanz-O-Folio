@@ -1,0 +1,32 @@
+<p>A movie recommender turns scattered signals into a ranked list. The difficult work happens between the user's history and the final cards: deciding which signals to trust, finding plausible candidates, combining evidence, filtering unsuitable results, and explaining the ranking.</p>
+
+<h2>Collect Signals with Different Meanings</h2>
+<p>Explicit ratings are clear but sparse. Likes and favourites show intent, while searches, clicks, watch duration, and completion provide more abundant implicit feedback. A completed film is usually a stronger signal than a poster impression, but even completion can mean the user left the screen running.</p>
+<p>Signals need weights, timestamps, and context. Recent behaviour may represent current interest better than a choice from years ago. Shared devices and family accounts make every inference less certain.</p>
+
+<h2>Build a Content Profile</h2>
+<p>A content-based system represents films through features such as genre, cast, director, language, release period, or text embeddings from descriptions. The user's profile aggregates features from positively weighted interactions.</p>
+<p>Candidate movies are compared with that profile using a similarity function. This approach can explain recommendations through shared attributes and can work without data from other users. Its weakness is over-specialisation: it tends to recommend more of what the user already knows.</p>
+
+<h2>Use Collaborative Evidence</h2>
+<p>Collaborative filtering looks for patterns across users and items. Neighbourhood methods find users with similar histories or items liked by similar groups. Matrix-factorisation methods learn compact latent representations whose geometry captures interaction patterns.</p>
+<p>Collaborative methods can discover connections that metadata misses, but they struggle with new users and new films. They also inherit popularity and exposure bias from historical interactions.</p>
+
+<h2>Generate Candidates Before Ranking</h2>
+<p>Large catalogues are usually handled in two stages. Candidate generation retrieves a few hundred plausible items quickly from several sources: content similarity, collaborative models, trending lists, new releases, or editorial collections.</p>
+<p>A ranking model then evaluates those candidates with richer features. Separating retrieval from ranking keeps latency manageable and allows different discovery strategies to contribute to the same list.</p>
+
+<h2>Combine Relevance with Product Rules</h2>
+<p>The final score may combine predicted preference, recency, quality, novelty, and confidence. Filters remove already-watched items, unavailable titles, age-inappropriate content, or languages the user has excluded.</p>
+<p>Re-ranking can improve diversity by limiting repeated genres or franchises. These rules should be visible in evaluation because they change the list after the core model produces its score.</p>
+
+<h2>Handle the Cold Start</h2>
+<p>A new user has no history. An onboarding step can request a few favourite movies or genres, but it should remain optional and short. Contextual popularity by language or region provides a fallback, and the interface can deliberately mix safe choices with exploration.</p>
+<p>New movies have the opposite problem: metadata is available but interactions are not. Content similarity and editorial placement give them an initial path into candidate sets.</p>
+
+<h2>Explain Without Pretending Certainty</h2>
+<p>“Because you liked…” or “Similar in genre and tone” helps a user understand and correct the system. Explanations should correspond to real ranking evidence rather than being generated after the fact.</p>
+<p>Controls such as “not interested,” “show fewer like this,” and profile editing convert explanation into feedback. They also reveal mistakes that offline metrics cannot see.</p>
+
+<h2>Evaluate the Whole Experience</h2>
+<p>Accuracy is one part of the result. Coverage, diversity, novelty, calibration, fairness, latency, and user satisfaction all matter. A useful movie recommender does not merely predict the past; it helps a person make a satisfying next choice.</p>

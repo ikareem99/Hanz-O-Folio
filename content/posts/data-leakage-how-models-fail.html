@@ -1,0 +1,32 @@
+<p>Data leakage occurs when training uses information that would not be available at prediction time. The model appears impressive during evaluation and disappoints in production because the test setup accidentally gave it an answer key.</p>
+
+<h2>Leakage Can Be Direct</h2>
+<p>A target-derived feature is the clearest example. Predicting whether an order will be cancelled while including a final cancellation status lets the model read the outcome. Less obvious versions include post-event notes, refund amounts, or fields populated only after the decision point.</p>
+<p>Define the prediction moment precisely. For every feature, ask whether its value exists at that moment and whether the production system can retrieve it with the same delay and quality.</p>
+
+<h2>Preprocessing Can Leak Across Splits</h2>
+<p>Fitting a scaler, imputer, vocabulary, feature selector, or dimensionality-reduction step on the full dataset allows test-set statistics to influence training. The effect may be small for one transformation and significant when several steps are combined.</p>
+<p>Split first. Fit every learned preprocessing step on the training partition, then apply it unchanged to validation and test data. A pipeline abstraction helps enforce this order during cross-validation.</p>
+
+<h2>Random Splits Can Break Time</h2>
+<p>When predicting the future, a random split can place later records in training and earlier records in testing. Seasonal patterns, updated policies, or repeated entities then carry future information backward.</p>
+<p>Use temporal validation: train on an earlier period and evaluate on a later one. Preserve a final out-of-time test set that is not used for tuning.</p>
+
+<h2>The Same Entity Can Appear Twice</h2>
+<p>Rows are not always independent. Multiple visits from one patient, transactions from one customer, frames from one video, or sensor readings from one device may be nearly identical. A row-level split puts related examples on both sides and inflates performance.</p>
+<p>Group splitting keeps each entity in one partition. The grouping key should match how the model will encounter new data: a new event for a known user is different from a completely new user.</p>
+
+<h2>Duplicates Create Hidden Shortcuts</h2>
+<p>Exact and near-duplicate records can cross the split, especially after merging sources. Text and image datasets may contain copied material with different identifiers. The model then memorises examples that look new according to the row ID.</p>
+<p>Deduplicate before splitting, using domain-appropriate similarity where exact matching is insufficient. Record how many examples were removed and from which sources.</p>
+
+<h2>Feature Engineering Can Encode the Future</h2>
+<p>Aggregates need a time boundary. A user's “lifetime purchase total” calculated from the entire table includes purchases made after an earlier prediction. Rolling features should use only events before each prediction timestamp.</p>
+<p>Backtests should rebuild features as they would have existed historically. This point-in-time correctness is essential for transaction, recommendation, and forecasting systems.</p>
+
+<h2>Suspicious Performance Is a Signal</h2>
+<p>An unexpectedly large improvement deserves investigation. Examine feature importance, train a simple baseline, remove suspicious columns, and evaluate on a later or external dataset. A single feature that nearly determines the label often indicates a process artifact.</p>
+
+<h2>Prevent Leakage with Process</h2>
+<p>Document the prediction timestamp, feature availability, split unit, and preprocessing fit scope. Keep test data inaccessible during routine iteration. Review data joins and feature definitions with someone who understands the operational process.</p>
+<p>Leakage is not fixed by a better algorithm. It is prevented by designing evaluation to match the real decision the model will make.</p>

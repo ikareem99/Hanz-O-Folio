@@ -1,0 +1,24 @@
+<p>LudoT is an automated Ludo-playing robot that connects high-level game decisions in Python with physical control logic in C++. The project turns a familiar board game into a systems problem: the software must understand legal moves, select an action, communicate it reliably, and translate that decision into a repeatable physical movement.</p>
+
+<h2>From Board Game to Engineering Problem</h2>
+<p>Ludo mixes chance with constrained decision-making. A dice roll determines the available options, but the player still has to choose which token to move. A useful automated player therefore needs an explicit representation of the board, token positions, home paths, safe positions, captures, and winning conditions. Encoding those rules was the foundation of LudoT.</p>
+<p>The project separates decision logic from motion control. Python handles the game state and move selection because it supports rapid iteration and clear rule modelling. C++ runs on the embedded side, where direct hardware control and predictable execution are more important. This division keeps changes to strategy from becoming changes to motor-control code.</p>
+
+<h2>Representing the Game State</h2>
+<p>At any turn, the software needs to know the dice value, the active player's pieces, the legal destinations, and the consequences of each candidate move. Instead of treating the board as an image, the logic can treat it as a structured state: each token has a current position and a limited set of valid transitions.</p>
+<p>Move selection begins by filtering out illegal actions. The remaining candidates can then be compared using practical priorities such as bringing a new token into play, capturing an opponent, moving to a safer square, advancing a token closer to home, or avoiding unnecessary exposure. The purpose is not to claim perfect play; it is to make every choice traceable to a rule that can be tested.</p>
+
+<h2>Connecting Python and C++</h2>
+<p>LudoT uses MQTT as the communication layer between the Python decision process and the embedded C++ controller. The Python side publishes a compact command describing the selected token and movement. The controller subscribes to that command, validates it, performs the physical action, and can report status back to the higher-level program.</p>
+<p>This message-based boundary avoids tight coupling. The game engine does not need to know how a motor is driven, and the controller does not need to implement Ludo strategy. It also makes debugging easier because a move can be inspected at the communication boundary before any hardware action begins.</p>
+
+<h2>Making Physical Movement Repeatable</h2>
+<p>A correct move in software is only useful when the robot can reproduce it on the board. Physical systems introduce issues that do not appear in a simulation: motor steps can drift, a token can be misaligned, a mechanism can overshoot, and a previous movement can affect the next one. Calibration converts board positions into motion commands, while controlled speeds and known reference points improve consistency.</p>
+<p>The controller benefits from treating each action as a small state machine. It can receive a command, confirm that it is ready, move through the required positions, report success or failure, and return to an idle state. That is safer than accepting new movement instructions while a previous one is still running.</p>
+
+<h2>Testing and Limitations</h2>
+<p>The software can be tested in layers. Rule tests verify legal moves and edge cases without hardware. Communication tests confirm that commands are serialized and interpreted consistently. Movement tests focus on individual positions before combining them into complete turns. End-to-end testing then checks that one game-state update produces the expected physical result.</p>
+<p>LudoT is a student robotics project, so it does not remove every source of uncertainty. Mechanical calibration, recovery after a displaced token, and reliable sensing remain harder than calculating a move. A more advanced version could add position feedback, stronger error recovery, and recorded game replays for debugging.</p>
+
+<h2>What This Project Demonstrates</h2>
+<p>LudoT combines algorithms, Python, embedded C++, messaging, and physical automation. Its key lesson is architectural: keeping strategy, communication, and movement in separate layers makes a robotics project easier to reason about, test, and improve.</p>

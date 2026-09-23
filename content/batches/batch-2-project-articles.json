@@ -1,0 +1,13 @@
+{
+  "updates": [
+    {"id": "6ab419b6cc568ca96a80d48e", "slug": "rideflow", "file": "content/projects/rideflow.html"},
+    {"id": "6ab419b6cc568ca96a80d48f", "slug": "parallel-csv-data-processing-pipeline", "file": "content/projects/parallel-csv-data-processing-pipeline.html"},
+    {"id": "6a83d8ead40fcf48060d5c77", "slug": "ludot", "file": "content/projects/ludot.html"},
+    {"id": "6a83d8ead40fcf48060d5c78", "slug": "movie-manager", "file": "content/projects/movie-manager.html"},
+    {"id": "6a83d8ead40fcf48060d5c79", "slug": "rush-hour", "file": "content/projects/rush-hour.html"},
+    {"id": "6a83d8ead40fcf48060d5c7a", "slug": "nike-app", "file": "content/projects/nike-app.html"},
+    {"id": "6ab419b6cc568ca96a80d490", "slug": "react-movie-app", "file": "content/projects/react-movie-app.html"},
+    {"id": "6ab419b6cc568ca96a80d491", "slug": "character-counter", "file": "content/projects/character-counter.html"},
+    {"id": "6ab419b6cc568ca96a80d492", "slug": "word-shooter", "file": "content/projects/word-shooter.html"}
+  ]
+}

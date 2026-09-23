@@ -1,0 +1,174 @@
+{
+  "updates": [
+    {
+      "id": "6a83d8ead40fcf48060d5c83",
+      "slug": "building-an-automated-ludo-robot",
+      "title": "Building an Automated Ludo Robot with Python and C++",
+      "excerpt": "How LudoT combines computer vision, game-state logic, serial communication, and physical actuation in one reliable robotics system.",
+      "date": "Aug 15, 2026",
+      "read": "4 min read",
+      "coverSrc": "/assets/posts/ludot-robot.svg",
+      "keywords": ["LudoT", "robotics", "computer vision", "Python", "C++", "automation"],
+      "priority": 70,
+      "file": "content/posts/building-an-automated-ludo-robot.html"
+    },
+    {
+      "id": "6a83e39753141a186fc38ed8",
+      "slug": "data-structures-in-recommendation-systems",
+      "title": "Data Structures Behind Recommendation Systems",
+      "excerpt": "A practical look at the arrays, sparse matrices, graphs, heaps, and indexes that make recommendation pipelines efficient.",
+      "date": "Jul 22, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/recommender-data-structures.svg",
+      "keywords": ["recommendation systems", "data structures", "graphs", "sparse matrices", "machine learning"],
+      "priority": 100,
+      "file": "content/posts/data-structures-in-recommendation-systems.html"
+    },
+    {
+      "id": "6a83e39753141a186fc38edb",
+      "slug": "mastering-cplusplus-for-simulation",
+      "title": "Mastering C++ for Real-Time Simulation",
+      "excerpt": "Lessons from building simulations in C++: deterministic state, efficient data layouts, timing, testing, and observability.",
+      "date": "May 10, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/cpp-simulation.svg",
+      "keywords": ["C++", "simulation", "real-time systems", "performance", "software engineering"],
+      "priority": 150,
+      "file": "content/posts/mastering-cplusplus-for-simulation.html"
+    }
+  ],
+  "creates": [
+    {
+      "slug": "agent-infrastructure-changes-2026",
+      "title": "The Agent Stack Is Becoming Infrastructure: What Changed in 2026",
+      "excerpt": "A September 2026 field update on managed agent runtimes, tool protocols, long-running work, and the engineering practices they require.",
+      "date": "Sep 24, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/agent-infrastructure-2026.svg",
+      "keywords": ["AI agents", "Agents API", "MCP", "agent infrastructure", "current affairs", "2026"],
+      "priority": 10,
+      "file": "content/posts/agent-infrastructure-changes-2026.html"
+    },
+    {
+      "slug": "engineering-a-ride-hailing-trip",
+      "title": "The Engineering Behind a Ride-Hailing Trip",
+      "excerpt": "A system-level walkthrough of matching, trip state, fares, payments, ratings, and recovery in a ride-hailing platform.",
+      "date": "Sep 16, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/ride-lifecycle.svg",
+      "keywords": ["RideFlow", "ride hailing", "system design", "TypeScript", "payments", "state machines"],
+      "priority": 20,
+      "file": "content/posts/engineering-a-ride-hailing-trip.html"
+    },
+    {
+      "slug": "evaluating-ai-coding-assistants",
+      "title": "How to Evaluate an AI Coding Assistant",
+      "excerpt": "A repeatable evaluation method based on real tasks, correctness, review effort, security, maintainability, and time saved.",
+      "date": "Sep 10, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/coding-assistant-evaluation.svg",
+      "keywords": ["AI coding assistants", "evaluation", "software engineering", "testing", "developer productivity"],
+      "priority": 30,
+      "file": "content/posts/evaluating-ai-coding-assistants.html"
+    },
+    {
+      "slug": "designing-agentic-ai-with-safe-boundaries",
+      "title": "Designing Agentic AI with Safe Boundaries",
+      "excerpt": "How permissions, validation, idempotency, audit trails, budgets, and human review make tool-using AI systems dependable.",
+      "date": "Sep 3, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/safe-agents.svg",
+      "keywords": ["agentic AI", "AI safety", "tool use", "permissions", "human review", "reliability"],
+      "priority": 40,
+      "file": "content/posts/designing-agentic-ai-with-safe-boundaries.html"
+    },
+    {
+      "slug": "vector-databases-and-retrieval",
+      "title": "Vector Databases and Retrieval for AI Applications",
+      "excerpt": "A practical guide to embeddings, similarity search, filtering, chunking, reranking, and measuring retrieval quality.",
+      "date": "Aug 27, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/vector-retrieval.svg",
+      "keywords": ["vector databases", "embeddings", "retrieval", "RAG", "similarity search", "AI"],
+      "priority": 50,
+      "file": "content/posts/vector-databases-and-retrieval.html"
+    },
+    {
+      "slug": "choose-a-baseline-before-complex-model",
+      "title": "Choosing a Baseline Before a Complex ML Model",
+      "excerpt": "Why simple baselines reveal data problems, define real progress, and prevent wasted effort in machine-learning projects.",
+      "date": "Aug 20, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/ml-baseline.svg",
+      "keywords": ["machine learning", "baseline models", "model evaluation", "data science", "experimentation"],
+      "priority": 60,
+      "file": "content/posts/choose-a-baseline-before-complex-model.html"
+    },
+    {
+      "slug": "data-leakage-how-models-fail",
+      "title": "Data Leakage: How Good Models Fail in Practice",
+      "excerpt": "How target, temporal, group, and preprocessing leakage create misleading scores—and how to design splits that expose reality.",
+      "date": "Aug 6, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/data-leakage.svg",
+      "keywords": ["data leakage", "machine learning", "validation", "data science", "model evaluation"],
+      "priority": 80,
+      "file": "content/posts/data-leakage-how-models-fail.html"
+    },
+    {
+      "slug": "from-preferences-to-movie-recommendations",
+      "title": "From User Preferences to Movie Recommendations",
+      "excerpt": "A practical path from explicit preferences and interaction signals to candidate generation, ranking, diversity, and feedback.",
+      "date": "Jul 29, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/movie-recommendations.svg",
+      "keywords": ["movie recommendations", "recommender systems", "ranking", "personalization", "React"],
+      "priority": 90,
+      "file": "content/posts/from-preferences-to-movie-recommendations.html"
+    },
+    {
+      "slug": "evaluating-recommenders-beyond-accuracy",
+      "title": "Evaluating a Recommender Beyond Accuracy",
+      "excerpt": "A balanced framework for measuring ranking quality, coverage, diversity, novelty, calibration, latency, and user outcomes.",
+      "date": "Jul 15, 2026",
+      "read": "4 min read",
+      "coverSrc": "/assets/posts/recommender-evaluation.svg",
+      "keywords": ["recommender systems", "evaluation", "ranking metrics", "diversity", "machine learning"],
+      "priority": 110,
+      "file": "content/posts/evaluating-recommenders-beyond-accuracy.html"
+    },
+    {
+      "slug": "trustworthy-iot-sensor-data-pipelines",
+      "title": "Building Trustworthy IoT Sensor Data Pipelines",
+      "excerpt": "A practical architecture for ingesting sensor logs while preserving event time, data quality, traceability, and replayability.",
+      "date": "Jul 8, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/iot-pipeline.svg",
+      "keywords": ["IoT", "data pipelines", "sensor data", "data quality", "observability", "CSV"],
+      "priority": 120,
+      "file": "content/posts/trustworthy-iot-sensor-data-pipelines.html"
+    },
+    {
+      "slug": "when-parallel-csv-processing-helps",
+      "title": "When Parallel CSV Processing Actually Helps",
+      "excerpt": "How to decide whether chunking, worker pools, and parallel parsing will speed up a CSV pipeline—or simply add overhead.",
+      "date": "Jun 25, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/parallel-csv.svg",
+      "keywords": ["parallel processing", "CSV", "data engineering", "performance", "Python", "IoT"],
+      "priority": 130,
+      "file": "content/posts/when-parallel-csv-processing-helps.html"
+    },
+    {
+      "slug": "cleaning-messy-csv-data",
+      "title": "A Practical Workflow for Cleaning Messy CSV Data",
+      "excerpt": "A reproducible workflow for profiling schemas, normalizing missing values, fixing types, handling duplicates, and validating output.",
+      "date": "Jun 11, 2026",
+      "read": "3 min read",
+      "coverSrc": "/assets/posts/cleaning-csv.svg",
+      "keywords": ["data cleaning", "CSV", "Python", "pandas", "data quality", "data science"],
+      "priority": 140,
+      "file": "content/posts/cleaning-messy-csv-data.html"
+    }
+  ]
+}

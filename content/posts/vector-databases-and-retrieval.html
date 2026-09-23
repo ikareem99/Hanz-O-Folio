@@ -1,0 +1,31 @@
+<p>Vector databases are often presented as the component that makes an AI application intelligent. Their actual job is narrower and more useful: store vector representations, retrieve nearby items efficiently, and combine that retrieval with metadata filters and application rules.</p>
+
+<h2>Embeddings Turn Content into Coordinates</h2>
+<p>An embedding model converts text, images, or other content into a fixed-length vector. Items with similar meaning are intended to lie near one another under a distance measure such as cosine similarity, dot product, or Euclidean distance.</p>
+<p>The vector is not a human-readable summary, and proximity is not guaranteed truth. The model, input format, chunking strategy, and language all influence what “similar” means.</p>
+
+<h2>Exact Search Becomes Expensive</h2>
+<p>Finding the nearest items by comparing a query with every stored vector is accurate but increasingly costly as the collection grows. Approximate nearest-neighbour indexes trade a small amount of recall for much faster search.</p>
+<p>Graph-based indexes such as HNSW and partition-based methods organise the space so the query visits only a fraction of the vectors. Index parameters affect build time, memory, latency, and recall. They should be chosen with measurements from the real dataset.</p>
+
+<h2>Chunking Is Part of Retrieval Quality</h2>
+<p>Long documents are usually split before embedding. Chunks that are too large mix topics and waste context. Chunks that are too small lose surrounding meaning and create fragmented answers.</p>
+<p>Useful boundaries often follow headings, paragraphs, or semantic sections. Store source identifiers, titles, timestamps, permissions, and offsets with every chunk so results can be filtered, cited, and traced back to the original material.</p>
+
+<h2>Hybrid Retrieval Covers Different Failure Modes</h2>
+<p>Semantic search handles paraphrases and conceptual similarity. Keyword search remains strong for exact names, codes, error messages, and rare terms. A hybrid system retrieves from both, normalises scores, and combines the candidate sets.</p>
+<p>A reranker can then compare the query with each candidate more carefully. This two-stage design uses fast retrieval for breadth and a slower model for precision.</p>
+
+<h2>Metadata Filters Are Essential</h2>
+<p>Similarity alone should not decide access. A user may be allowed to search only one organisation, region, date range, or document class. Apply permission and product filters inside retrieval, not after private results have already reached the model.</p>
+<p>Metadata also improves relevance. A support query can prefer the latest product version, while an academic search may filter by publication type or date.</p>
+
+<h2>Evaluate Retrieval Separately</h2>
+<p>A fluent generated answer can hide failed retrieval. Build a query set with known relevant documents and measure recall at K, precision at K, mean reciprocal rank, and filter correctness. Review hard negatives: items that look similar but should not answer the query.</p>
+<p>Then evaluate the complete retrieval-augmented generation flow for groundedness, citation accuracy, answer completeness, latency, and cost. Separating the stages shows whether a failure came from retrieval or generation.</p>
+
+<h2>Plan for Updates and Deletions</h2>
+<p>Documents change. The system needs stable IDs, versioning, re-embedding jobs, and deletion that removes both vectors and derived caches. Changing the embedding model usually requires a parallel re-index rather than mixing incompatible vector spaces.</p>
+
+<h2>Choose the Simplest Storage That Fits</h2>
+<p>A small project may use an existing database with vector support. A dedicated service becomes useful when scale, filtering, multi-tenancy, replication, or operational tooling requires it. The product need should choose the database, not the popularity of the term.</p>

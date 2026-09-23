@@ -1,0 +1,103 @@
+{
+  "capturedAt": "2026-09-23",
+  "source": "Authenticated local /api/v1 endpoints backed by the configured MongoDB database",
+  "projects": [
+    {
+      "_id": "6a83d8ead40fcf48060d5c77",
+      "title": "LudoT",
+      "slug": "ludot",
+      "subtitle": "Automated Ludo Playing Robot (Python + C++)",
+      "imgSrc": "/assets/najmai.jpeg",
+      "keywords": ["robotics", "python", "c++", "ai", "machine learning", "coding"],
+      "priority": 0,
+      "content": ""
+    },
+    {
+      "_id": "6a83d8ead40fcf48060d5c78",
+      "title": "Movie Manager",
+      "slug": "movie-manager",
+      "subtitle": "Recommendation System in C++",
+      "imgSrc": "/assets/damas.png",
+      "keywords": ["recommendation", "c++", "data structures", "coding"],
+      "priority": 0,
+      "content": ""
+    },
+    {
+      "_id": "6a83d8ead40fcf48060d5c79",
+      "title": "RUSH HOUR",
+      "slug": "rush-hour",
+      "subtitle": "2D Driving Simulation (C++)",
+      "imgSrc": "/assets/majd.png",
+      "keywords": ["simulation", "game", "c++", "coding"],
+      "priority": 0,
+      "content": ""
+    },
+    {
+      "_id": "6a83d8ead40fcf48060d5c7a",
+      "title": "Nike/Movie App",
+      "slug": "nike-movie-app",
+      "subtitle": "React.js & Tailwind CSS",
+      "imgSrc": "/assets/faseelh.png",
+      "keywords": ["react", "tailwind", "frontend", "web", "coding"],
+      "priority": 0,
+      "content": ""
+    }
+  ],
+  "posts": [
+    {
+      "_id": "6a83d8ead40fcf48060d5c83",
+      "slug": "building-an-automated-ludo-robot",
+      "title": "Building an Automated Ludo Robot with Python & C++",
+      "excerpt": "Exploring the challenges and successes of building LudoT, a robot capable of playing the classic board game Ludo using intelligent move selection.",
+      "date": "Aug 15, 2026",
+      "read": "5min read",
+      "coverSrc": "/assets/blog1.jpg",
+      "keywords": ["robotics", "c++", "python", "ai", "coding"],
+      "priority": 0,
+      "content": "<h2>The Concept</h2><p>The idea behind LudoT was to merge hardware control with algorithmic pathfinding...</p>"
+    },
+    {
+      "_id": "6a83e39753141a186fc38ed8",
+      "slug": "data-structures-in-recommendation-systems",
+      "title": "Data Structures in Recommendation Systems",
+      "excerpt": "A deep dive into how trees, graphs, and hash tables form the backbone of modern recommendation engines, as seen in the Movie Manager project.",
+      "date": "Jul 22, 2026",
+      "read": "8min read",
+      "coverSrc": "/assets/blog2.jpg",
+      "keywords": ["c++", "data structures", "algorithms", "coding", "recommendation"],
+      "priority": 0,
+      "content": "<h2>Why Data Structures Matter</h2><p>When managing vast amounts of movie data, simple arrays just won't cut it. Efficient querying and relation-mapping require graphs and fast lookup tables.</p><h2>Implementing the Core</h2><p>In Movie Manager, we utilized heavily optimized C++ data structures to quickly traverse user preferences and map them to similar films.</p>"
+    },
+    {
+      "_id": "6a83e39753141a186fc38edb",
+      "slug": "mastering-cplusplus-for-simulation",
+      "title": "Mastering C++ for Game Simulation",
+      "excerpt": "Lessons learned while developing the 2D driving logic and features for the Rush Hour simulation game.",
+      "date": "May 10, 2026",
+      "read": "6min read",
+      "coverSrc": "/assets/blog3.jpg",
+      "keywords": ["c++", "simulation", "gaming", "coding"],
+      "priority": 0,
+      "content": "<h2>Performance is Key</h2><p>C++ gives you the control needed to maintain high frame rates in simulation games. Memory management and precise object lifecycles are crucial.</p>"
+    }
+  ],
+  "tools": [
+    {"_id": "6a83d8ead40fcf48060d5c7c", "name": "Python", "role": "Core Language", "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", "keywords": ["coding", "language", "backend", "machine learning", "ml", "ai"], "priority": 0},
+    {"_id": "6a83d8ead40fcf48060d5c7d", "name": "C++", "role": "Systems & Logic", "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg", "keywords": ["coding", "language", "system", "performance"], "priority": 0},
+    {"_id": "6a83d8ead40fcf48060d5c7e", "name": "Pandas", "role": "Data Analysis", "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg", "keywords": ["data analysis", "python", "library", "coding"], "priority": 0},
+    {"_id": "6a83d8ead40fcf48060d5c7f", "name": "NumPy", "role": "Numerical Computing", "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg", "keywords": ["numerical computing", "python", "library", "coding"], "priority": 0},
+    {"_id": "6a83d8ead40fcf48060d5c80", "name": "VS Code", "role": "Code Editor", "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", "keywords": ["editor", "ide", "coding", "development"], "priority": 0},
+    {"_id": "6a83d8ead40fcf48060d5c81", "name": "Jupyter", "role": "Notebooks", "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg", "keywords": ["notebooks", "coding", "data science", "python"], "priority": 0},
+    {"_id": "6a83d8ead40fcf48060d5c82", "name": "ChatGPT", "role": "AI Assistant", "iconSrc": "/assets/chatgpt.png", "keywords": ["ai", "assistant", "productivity", "generative"], "priority": 0}
+  ],
+  "experience": [
+    {
+      "_id": "6a83d8ead40fcf48060d5c7b",
+      "company": "Synergy Flow Labs",
+      "description": "Remotely Worked as an Associate Software Engineer and Jr. Data Scientist, focusing on machine learning and scalable solutions.",
+      "period": "Jun 2025 - Present",
+      "keywords": ["software engineer", "data scientist", "machine learning", "coding", "ai", "python"],
+      "priority": 0
+    }
+  ]
+}

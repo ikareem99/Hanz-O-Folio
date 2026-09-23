@@ -1,0 +1,28 @@
+<p>Adding threads to a CSV pipeline can make it faster, slower, or simply more complicated. The result depends on where the time is spent. Parallel processing helps only when enough independent work exists to outweigh scheduling, communication, synchronisation, and data-merging costs.</p>
+
+<h2>Find the Bottleneck First</h2>
+<p>A CSV workload usually combines disk input, parsing, validation, transformation, aggregation, and output. Reading from a slow disk may dominate a simple row count. Complex parsing or feature calculation may make the processor CPU-bound. Writing compressed output may shift the bottleneck again.</p>
+<p>Measure each stage with one worker before changing the architecture. Record elapsed time, CPU utilisation, bytes read and written, memory use, and rows processed. Without a baseline, a faster-looking run may be benefiting from filesystem cache or a different input size.</p>
+
+<h2>Parallelism Helps CPU-Heavy Independent Work</h2>
+<p>Rows or chunks that can be parsed and transformed independently are good candidates for worker threads or processes. Examples include converting fields, validating schemas, calculating features, or aggregating into thread-local summaries. More computation per chunk gives the coordination overhead more useful work to hide.</p>
+<p>Thread-local results are often better than updating one shared table for every row. Each worker can build its own counts or sums, and the program can merge those smaller structures at the end.</p>
+
+<h2>I/O Can Limit the Speedup</h2>
+<p>If one storage device is already delivering data at its maximum rate, additional readers may create seeks or compete for the same bandwidth. Network filesystems and cloud object storage have different limits and may benefit from controlled concurrency, but they also introduce request costs and variable latency.</p>
+<p>A pipeline can overlap reading with processing even when reading itself is serial. One stage fills a bounded queue while workers consume chunks. This improves utilisation without pretending that the disk became parallel.</p>
+
+<h2>Chunk Size Is a Tradeoff</h2>
+<p>Tiny chunks improve load balancing but increase queue operations and message overhead. Huge chunks reduce coordination but can leave workers idle near the end and increase memory pressure. Choose an initial size from row complexity and memory limits, then test several values.</p>
+<p>Chunk boundaries must preserve complete records. Quoted fields can contain line breaks, so a robust CSV parser should determine record boundaries rather than assuming each newline finishes a row.</p>
+
+<h2>Synchronisation Can Erase the Benefit</h2>
+<p>A shared map protected by one mutex may become the new bottleneck. Every worker completes useful parsing and then waits to update the same structure. Batching updates, sharding by key, or merging thread-local maps reduces contention.</p>
+<p>Backpressure also matters. A bounded queue prevents a fast reader from consuming all memory when processing slows. The queue size should absorb normal variation without hiding a permanently overloaded stage.</p>
+
+<h2>Benchmark the Whole System</h2>
+<p>Test one, two, four, and more workers on the same machine and input. Repeat runs, separate cold-cache and warm-cache measurements, and report the median with variation. Verify that every configuration produces identical output before comparing speed.</p>
+<p>Amdahl's law gives the intuition: the serial portion limits total speedup. If half the time is inherently serial, infinite workers still cannot deliver more than a two-times improvement.</p>
+
+<h2>Use the Simplest Architecture That Meets the Goal</h2>
+<p>Parallel processing is justified when measured throughput or latency requirements demand it. For a small daily file, a clear single-process implementation may be easier to operate and fast enough. For large CPU-heavy inputs, a staged pipeline with controlled workers can provide a real benefit. Measurement decides which case you have.</p>

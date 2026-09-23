@@ -1,0 +1,25 @@
+<p>Automating a board game sounds playful, but it forces software and hardware to agree on the same reality. LudoT began with a simple question: can a program choose a legal Ludo move and then make a physical mechanism carry it out reliably? Answering that question required more than a strategy function. It required a complete path from rules to messages to motion.</p>
+
+<h2>Model the Rules Before the Robot</h2>
+<p>The first useful version of LudoT existed entirely in software. Each token had a position, each player had a home path, and a dice value produced a set of legal moves. Rules for entering the board, landing on safe positions, capturing an opponent, and reaching home were encoded as explicit state transitions.</p>
+<p>This representation mattered because physical movement should never decide whether an action is legal. The game engine produces a validated move first. The controller receives only a command that is already allowed by the current state.</p>
+
+<h2>Move Selection Should Be Explainable</h2>
+<p>Ludo includes chance, so there is no strategy that guarantees the outcome. The goal was therefore to make reasonable choices that could be inspected. Candidate moves were evaluated using practical signals: whether a move brings a token into play, captures an opponent, reaches a safe position, advances toward home, or exposes a token unnecessarily.</p>
+<p>An explainable score is valuable during development. When a move looks wrong, the reason can be traced to a rule or weight instead of being hidden inside an opaque decision. It also makes it easier to create test cases for specific board situations.</p>
+
+<h2>Separate Strategy from Motion</h2>
+<p>Python handles the game state and decision logic, while C++ handles embedded control. MQTT connects the two sides. The Python process publishes a compact move command, and the controller interprets that command as a sequence of physical actions.</p>
+<p>This boundary prevents strategy experiments from disturbing low-level control. It also gives both sides a clear contract: a message needs a known format, a unique action, and a defined success or failure response. Logging at this boundary helps distinguish a bad decision from a communication problem or a mechanical problem.</p>
+
+<h2>The Physical World Adds New Failure Modes</h2>
+<p>A simulated token arrives at its destination exactly. A physical token can drift, rotate, catch on the board, or begin from a slightly different position. Motors can miss steps and accumulated error can make later moves less accurate.</p>
+<p>Calibration therefore becomes part of the software design. Known reference positions map board coordinates to movement. Speeds and paths need to be conservative enough to remain repeatable. The controller should treat movement as a state machine: accept a command, confirm readiness, execute, report the result, and return to idle before accepting another command.</p>
+
+<h2>Test One Layer at a Time</h2>
+<p>Rule tests can run without any hardware. They cover legal and illegal moves, captures, safe positions, and home-entry cases. Communication tests publish known commands and verify that the embedded side interprets every field correctly. Motion tests target one path or board position repeatedly before combining movements into a complete turn.</p>
+<p>End-to-end tests come last. A known board state and dice roll should produce a predictable decision, message, and physical result. When a failure occurs, layered logs show where the expected chain diverged.</p>
+
+<h2>What I Would Improve Next</h2>
+<p>The hardest limitation is feedback. An open-loop mechanism assumes that a commanded movement happened. A stronger version would detect token position, verify the result of each action, and pause when the physical board disagrees with the software state. It could also record full games for replay and strategy evaluation.</p>
+<p>LudoT taught me that robotics is an integration discipline. A good algorithm is only one part of the system. Clear interfaces, calibration, observability, and recovery determine whether that algorithm becomes a dependable physical action.</p>

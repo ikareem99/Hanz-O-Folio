@@ -1,0 +1,32 @@
+<p>An AI coding assistant can produce a convincing demo while making a codebase harder to maintain. Evaluation should measure whether it solves the requested task correctly, preserves surrounding behaviour, communicates uncertainty, and reduces total engineering effort.</p>
+
+<h2>Evaluate Real Tasks, Not Trivia</h2>
+<p>Create a task set from the work developers actually perform: fixing a bug, adding a small feature, refactoring duplicated logic, writing a migration, explaining unfamiliar code, and updating tests or documentation. Include different languages and repository sizes when those reflect the intended use.</p>
+<p>Each task needs a starting commit, a clear request, allowed tools, environmental instructions, and acceptance criteria. Preserve hidden checks so the assistant cannot optimise only for visible examples.</p>
+
+<h2>Correctness Is More Than Compilation</h2>
+<p>A passing build proves syntax and types, not product behaviour. Run meaningful tests, reproduce the original bug, and check edge cases. For database or API changes, verify schema compatibility, error handling, permissions, and rollback behaviour.</p>
+<p>Review whether the implementation actually matches the request. An assistant may make a different feature work while missing a constraint such as backward compatibility or data preservation.</p>
+
+<h2>Measure the Size and Quality of the Change</h2>
+<p>Count files changed, lines added, and unrelated edits. A smaller diff is not automatically better, but unnecessary rewrites increase review cost and risk. Look for duplicated logic, misleading names, hidden coupling, weak validation, and comments that restate the code.</p>
+<p>Check whether the solution follows local conventions. A technically valid patch that introduces a second architecture or ignores established utilities creates future maintenance work.</p>
+
+<h2>Test Repository Awareness</h2>
+<p>Good coding assistance begins with inspection. The agent should locate relevant files, read project instructions, examine nearby patterns, and understand the test setup before editing. Record whether it changes direction when evidence contradicts its first assumption.</p>
+<p>Tasks that require coordinated changes across a model, API route, client, and test are useful because they reveal whether the assistant understands dependencies rather than completing one isolated function.</p>
+
+<h2>Include Safety and Security Cases</h2>
+<p>Add tasks involving authentication, user input, secrets, file paths, and external commands. Check for injection, missing authorisation, insecure defaults, accidental logging, and destructive operations. An assistant should refuse or pause when the requested action requires authority it does not have.</p>
+<p>Dependency suggestions need scrutiny. Measure whether the agent adds a package when existing code or the standard library would be sufficient, and whether it verifies the package source and compatibility.</p>
+
+<h2>Measure Human Effort</h2>
+<p>Time to first patch is incomplete. Record total time until an acceptable result, number of review comments, manual corrections, repeated prompts, and time spent understanding the generated code. A slower first attempt can be better if it requires little repair.</p>
+<p>Ask reviewers to rate clarity and confidence without knowing which tool produced the patch. Blind review reduces brand expectations and presentation bias.</p>
+
+<h2>Track Cost and Reproducibility</h2>
+<p>Record model version, settings, prompt, tool permissions, token or compute cost, and run duration. Repeat tasks because model outputs vary. Report success rate and variance rather than one impressive example.</p>
+
+<h2>Use the Results to Define a Workflow</h2>
+<p>The outcome may show that the assistant is strong at explanation and bounded fixes but unreliable for migrations or security-sensitive code. That is still useful. Assign autonomy by task class, keep review gates where evidence requires them, and re-run the suite when models, prompts, or tools change.</p>
+<p>The best question is not whether an assistant can write code. It is whether the complete workflow produces correct, maintainable software with less effort and controlled risk.</p>

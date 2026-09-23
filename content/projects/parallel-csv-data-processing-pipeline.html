@@ -1,0 +1,25 @@
+<p>The Parallel CSV Data Processing Pipeline is a Linux systems project for processing IoT sensor logs with multiple processes and worker threads. Instead of loading every file into one program, it separates ingestion, computation, and reporting into focused components connected through POSIX inter-process communication.</p>
+
+<h2>The Processing Goal</h2>
+<p>Each input row begins with a device identifier followed by numeric readings. The pipeline groups readings by device and produces a count, sum, average, and anomaly count. Values above a defined threshold are marked as anomalies. The final results are written in both machine-readable CSV and human-readable text formats.</p>
+<p>The project was completed by a three-person group. My primary responsibilities covered the dispatcher, ingester, run script, and initial project setup. Those components establish the resources and process boundaries that allow the processor and reporter to work as a single pipeline.</p>
+
+<h2>Pipeline Architecture</h2>
+<p>The dispatcher acts as the parent process. It parses command-line options, creates a named FIFO, creates POSIX shared memory and a named semaphore, then forks the ingester, processor, and reporter. Each child is started with <code>execvp</code>, and its standard output and error streams are redirected into component-specific log files with <code>dup2</code>. The dispatcher also waits for child processes, handles signals, and removes operating-system resources during shutdown.</p>
+<p>The ingester scans an input directory for CSV files and reads them line by line. Instead of writing arbitrary byte streams, it groups rows into chunks and sends a small header before each chunk through the FIFO. The header tells the receiver how many bytes to read and whether the message marks the end of input. This framing matters because a FIFO read can return fewer bytes than requested.</p>
+
+<h2>Parallel Processing with a Bounded Queue</h2>
+<p>The processor contains one reader thread and a configurable number of worker threads. The reader reconstructs complete chunks from the FIFO and places them in a bounded circular queue. Two semaphores track empty and filled positions, while a mutex protects queue indices. This is the classic producer-consumer pattern applied to real file-processing work.</p>
+<p>Worker threads remove chunks, parse each CSV row, calculate local totals, and merge those totals into a shared aggregation table. A separate mutex protects that table. Keeping parsing work outside the aggregation lock reduces the amount of time workers spend waiting for one another. When ingestion finishes, termination items allow every worker to exit cleanly.</p>
+
+<h2>Passing Results Between Processes</h2>
+<p>After all workers finish, the processor serializes the device summaries into shared memory and posts the named semaphore. The reporter waits on that semaphore, reads the completed structure, then writes <code>report.csv</code> and <code>report.txt</code>. It also demonstrates file-descriptor duplication by temporarily redirecting standard output while producing the text report.</p>
+<p>Signals provide controlled shutdown and status reporting. The components respond to interruption requests, the dispatcher waits for children with <code>waitpid</code>, and cleanup removes the FIFO, shared-memory object, semaphore, and PID file. These details prevent stale resources from breaking the next run.</p>
+
+<h2>Design Limits and Next Improvements</h2>
+<p>The current implementation uses a fixed anomaly threshold and a fixed-capacity shared-memory result structure. Numeric conversion is intentionally simple, so malformed values do not receive the detailed validation a production ingestion service would require. The aggregation map is protected by one mutex; with a much larger workload, sharded maps or thread-local aggregation followed by a merge could reduce contention.</p>
+<p>Performance claims should come from measurement rather than the presence of threads alone. A useful next step would benchmark different worker counts, queue sizes, chunk sizes, file counts, and storage devices. That would show when concurrency offsets coordination overhead and when input/output remains the limiting factor.</p>
+
+<h2>What This Project Demonstrates</h2>
+<p>The pipeline connects operating-system concepts that are often studied separately: processes, threads, FIFOs, shared memory, semaphores, mutexes, signals, file descriptors, and lifecycle cleanup. The result is a concrete example of how data can move safely through a concurrent Unix-style application.</p>
+<p><a href="https://github.com/ikareem99/Parallel-CSV-Data-Processing-Pipeline" target="_blank" rel="noopener noreferrer">View the pipeline on GitHub</a></p>

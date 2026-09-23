@@ -1,0 +1,27 @@
+{
+  "updates": [
+    {"id":"6a83d8ead40fcf48060d5c7c","data":{"name":"Python","role":"AI, Data & Backend","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg","keywords":["python","machine learning","data science","backend","automation","ai"],"priority":10}},
+    {"id":"6a83d8ead40fcf48060d5c7d","data":{"name":"C++","role":"Systems & Game Logic","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg","keywords":["c++","systems programming","algorithms","game development","parallel processing"],"priority":20}},
+    {"id":"6a83d8ead40fcf48060d5c7e","data":{"name":"Pandas","role":"Data Preparation","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg","keywords":["pandas","data cleaning","data analysis","preprocessing","python"],"priority":130}},
+    {"id":"6a83d8ead40fcf48060d5c7f","data":{"name":"NumPy","role":"Numerical Computing","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg","keywords":["numpy","numerical computing","arrays","machine learning","python"],"priority":140}},
+    {"id":"6a83d8ead40fcf48060d5c81","data":{"name":"Jupyter","role":"Data Exploration","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg","keywords":["jupyter","notebooks","experiments","data science","python"],"priority":150}},
+    {"id":"6a83d8ead40fcf48060d5c80","data":{"name":"VS Code","role":"Development Environment","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg","keywords":["vs code","editor","debugging","development","productivity"],"priority":200}},
+    {"id":"6a83d8ead40fcf48060d5c82","data":{"name":"ChatGPT","role":"AI-Assisted Development","iconSrc":"/assets/chatgpt.png","keywords":["chatgpt","ai tools","research","prototyping","development"],"priority":210}}
+  ],
+  "creates": [
+    {"name":"JavaScript","role":"Web Programming","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg","keywords":["javascript","web development","frontend","api","programming"],"priority":30},
+    {"name":"TypeScript","role":"Typed Web Development","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg","keywords":["typescript","type safety","web development","frontend","backend"],"priority":40},
+    {"name":"React","role":"Frontend Interfaces","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg","keywords":["react","frontend","components","state management","web"],"priority":50},
+    {"name":"Next.js","role":"Full-Stack Web Apps","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg","keywords":["next.js","react","full stack","api routes","server rendering"],"priority":60},
+    {"name":"HTML5","role":"Semantic Web Structure","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg","keywords":["html","html5","semantic markup","accessibility","frontend"],"priority":70},
+    {"name":"CSS3","role":"Responsive Styling","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg","keywords":["css","css3","responsive design","layout","frontend"],"priority":80},
+    {"name":"Tailwind CSS","role":"Utility-First Styling","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg","keywords":["tailwind css","responsive design","utility css","frontend","styling"],"priority":90},
+    {"name":"Node.js","role":"Server-Side JavaScript","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg","keywords":["node.js","javascript","backend","api","server"],"priority":100},
+    {"name":"MongoDB","role":"Document Database","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg","keywords":["mongodb","database","nosql","mongoose","backend"],"priority":110},
+    {"name":"MySQL","role":"Relational Database","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg","keywords":["mysql","sql","relational database","database design","backend"],"priority":120},
+    {"name":"Linux","role":"Systems Development","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg","keywords":["linux","posix","operating systems","shell","systems programming"],"priority":160},
+    {"name":"Git","role":"Version Control","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg","keywords":["git","version control","branches","collaboration","development"],"priority":170},
+    {"name":"GitHub","role":"Collaboration & Source Hosting","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg","keywords":["github","source control","repositories","collaboration","portfolio"],"priority":180},
+    {"name":"Appwrite","role":"Backend Services","iconSrc":"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/appwrite/appwrite-original.svg","keywords":["appwrite","backend as a service","database","api","web development"],"priority":190}
+  ]
+}

@@ -1,0 +1,25 @@
+<p>Recommendation systems are often discussed as machine-learning models, but their behaviour also depends on ordinary data structures. Before a system can calculate similarity or rank candidates, it has to store users, items, interactions, and relationships in forms that support the right operations.</p>
+
+<h2>Start with the Queries</h2>
+<p>The useful question is not “Which data structure is fastest?” It is “Which operations happen most often?” A movie application may need to find a film by identifier, list titles in a genre, retrieve a user's ratings, discover similar users, and exclude items the user has already seen. Each operation suggests a different representation.</p>
+<p>Arrays and vectors are effective for ordered scans and compact storage. Hash maps provide fast average lookup by identifier. Sets prevent duplicate interactions and support membership checks. Graphs represent relationships naturally, while sparse matrices organise large user-item spaces for numerical algorithms.</p>
+
+<h2>Hash Maps for Direct Access</h2>
+<p>A catalogue frequently needs direct access to a movie record. A hash map keyed by a stable movie ID avoids scanning the whole collection for every lookup. A second index can map a normalised title to one or more IDs, accounting for remakes or duplicate titles.</p>
+<p>The tradeoff is synchronisation. When a movie changes, every secondary index that refers to it must remain consistent. Good encapsulation helps: catalogue updates should go through one interface that owns both the record and its indexes.</p>
+
+<h2>Sets for Seen Items and Candidate Filtering</h2>
+<p>A recommender normally generates more candidates than it will display. Before ranking, it should remove films the user has already watched, disliked, or explicitly hidden. A set makes these membership checks cheap and prevents the same candidate from entering the list through several routes.</p>
+<p>Sets are also useful for genre overlap. The intersection between two genre sets gives a simple content-similarity signal. That signal is limited, but it is transparent and easy to combine with other factors.</p>
+
+<h2>Graphs for Relationships</h2>
+<p>A recommendation graph can contain user nodes, movie nodes, and interaction edges such as watched, rated, or liked. Traversal then answers questions such as: which films were liked by users with preferences similar to mine? Graphs are expressive, especially when relationships carry timestamps or weights.</p>
+<p>They also introduce complexity. A graph should be chosen because the application needs relationship traversal, not because graphs sound advanced. For a small catalogue, an adjacency list built from vectors and maps may be sufficient. Large graph workloads may need a specialised database or offline computation.</p>
+
+<h2>Sparse Matrices for Collaborative Filtering</h2>
+<p>Collaborative filtering represents ratings as a user-item matrix. Most users interact with only a small fraction of the catalogue, so a dense matrix wastes memory. Sparse formats store only observed values and make similarity or factorisation operations practical.</p>
+<p>The structure still reflects product decisions. Missing does not mean disliked; it usually means unknown. Treating every empty cell as a negative preference produces poor recommendations. The algorithm and the data representation must agree on that distinction.</p>
+
+<h2>Ranking Needs More Than One Structure</h2>
+<p>A practical pipeline often uses several structures: maps for records, sets for filtering, vectors for scored candidates, and a heap when only the top results matter. The final list can be sorted by a combined score while preserving enough metadata to explain why each item was selected.</p>
+<p>This is the lesson I took from Movie Manager: performance comes from matching structures to operations. Recommendation quality still depends on data and evaluation, but the underlying structures determine whether the system can retrieve, filter, and rank candidates clearly and efficiently.</p>

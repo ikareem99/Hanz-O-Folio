@@ -1,0 +1,33 @@
+<p>A ride-hailing trip is a distributed state machine disguised as a button. Booking, driver matching, arrival, travel, payment, rating, and support all depend on one ride record moving through valid transitions while several users act at different times.</p>
+
+<h2>Begin with an Explicit Lifecycle</h2>
+<p>A practical lifecycle might include requested, assigned, accepted, driver en route, in progress, completed, cancelled, and failed. Define which actor can trigger each transition and which fields must exist first.</p>
+<p>Transitions belong in dedicated service operations or API endpoints. An arbitrary status update endpoint makes it too easy to skip required steps. The database should record status history with the previous state, new state, actor, and timestamp.</p>
+
+<h2>Estimate Before Creating the Ride</h2>
+<p>The rider selects pickup, destination, and vehicle type. A routing service returns estimated distance and duration. Fare logic combines base rate, per-distance rate, per-time rate, surge, and any valid promotion.</p>
+<p>The estimate should state its assumptions and expiry. Traffic and route changes mean the final fare may differ according to product policy. Validate coordinates, units, non-negative values, and promotion limits on the server.</p>
+
+<h2>Create the Request Transactionally</h2>
+<p>Creating a ride may also store locations, reserve a promotion, and create a driver assignment. These writes should succeed together or roll back together. An idempotency key protects against duplicate rides when a mobile client retries after a timeout.</p>
+<p>The response needs a stable ride ID even when no driver is immediately available. Matching can continue asynchronously while the rider sees a clear searching state.</p>
+
+<h2>Match Drivers with Constraints</h2>
+<p>Eligible drivers must be online, verified, associated with an active verified vehicle, and compatible with the requested vehicle type. Proximity is important but not sufficient. Location freshness, driver workload, rating, acceptance history, and fairness may influence ranking.</p>
+<p>A simple implementation can order drivers by approximate distance and rating. A production system would use geospatial indexes, travel-time estimates, staged offers, expiration, and load-aware dispatch. Matching policy should be measurable and revisable.</p>
+
+<h2>Protect Every Driver Transition</h2>
+<p>Only the assigned driver should accept or reject an offer. Starting a trip may require accepted status and rider pickup confirmation. Completion may require in-progress status and a final location.</p>
+<p>Concurrent actions need database protection. Two drivers should not accept the same ride, and a cancellation should not race with completion. Conditional updates, row locks, or transactions can ensure that only one valid transition wins.</p>
+
+<h2>Separate Trip Completion from Payment</h2>
+<p>A completed trip creates a payable amount, but payment can remain pending, fail, or be refunded. Keep ride status and payment status related but distinct. Wallet, cash, and card methods have different confirmation flows.</p>
+<p>Driver earnings should be derived once from the completed ride and commission rule. Unique constraints or idempotency prevent a retry from crediting the same trip twice.</p>
+
+<h2>Ratings and Complaints Need Context</h2>
+<p>Allow ratings only from participants in a completed ride, usually one rating per direction. Complaints should reference the ride, filer, subject, category, description, status, and resolution timestamps.</p>
+<p>Low ratings can create review alerts, but automated penalties should be cautious. Disputes need an auditable trail and access controls because trip records contain personal and location data.</p>
+
+<h2>Design for Failure</h2>
+<p>Drivers disconnect, location updates become stale, map services fail, and payment providers time out. Recovery rules should define retries, expirations, reassignment, cancellation fees, and support escalation. Observability should connect events across the ride ID.</p>
+<p>The engineering lesson from RideFlow is that a reliable trip is built from explicit states, transactional writes, narrow permissions, and idempotent actions. The map is visible; the state machine makes it trustworthy.</p>

@@ -1,0 +1,32 @@
+<p>A recommendation system can achieve a strong offline accuracy score and still feel repetitive, unfair, or unhelpful. Evaluation needs to reflect the experience the product is trying to create, not only whether a held-out item appears near the top of a list.</p>
+
+<h2>Begin with a Product Question</h2>
+<p>The metric depends on the goal. A movie app may want users to discover something they will enjoy. A marketplace may want relevant options without hiding smaller sellers. A learning platform may value completion and skill improvement more than clicks.</p>
+<p>Write the decision first: which list is being ranked, for whom, at what moment, and what outcome counts as useful? Metrics then become evidence for that decision rather than a scoreboard detached from the product.</p>
+
+<h2>Ranking Metrics Measure Order</h2>
+<p>Precision at K asks what fraction of the top K recommendations are relevant. Recall at K asks what fraction of the user's relevant items were recovered. Neither captures position, so Mean Reciprocal Rank rewards placing the first relevant item early, while Normalised Discounted Cumulative Gain gives larger credit to relevant items near the top.</p>
+<p>These metrics require a definition of relevance. A click, rating, purchase, or watch completion means something different. Negative and missing feedback should not be treated as interchangeable.</p>
+
+<h2>Coverage Shows Who and What the System Serves</h2>
+<p>Catalogue coverage measures how much of the available inventory ever appears in recommendations. User coverage measures how many users receive a valid list. A model that recommends the same popular items to everyone can score reasonably on accuracy while leaving most of the catalogue invisible.</p>
+<p>Segment coverage by new users, active users, geography, device, and catalogue category. Overall averages can hide a system that works well for one group and poorly for another.</p>
+
+<h2>Diversity and Novelty Shape Discovery</h2>
+<p>Intra-list diversity measures how different recommended items are from one another. Novelty rewards items that are less obvious to the user. Serendipity goes further by asking whether an unexpected item is still relevant.</p>
+<p>Maximising these metrics blindly can reduce usefulness. A balanced list might contain several highly relevant choices plus a controlled amount of exploration. Product constraints should define that balance.</p>
+
+<h2>Calibration Matches the User's Profile</h2>
+<p>If a user watches several genres, a recommendation list dominated by only one genre may be accurate but poorly calibrated. Calibration compares the distribution of properties in the user's history with the distribution in the recommendation list.</p>
+<p>History is not a perfect statement of intent. It can reflect shared accounts, limited previous options, or changing interests. Recent signals and explicit controls can help users correct the profile the system has inferred.</p>
+
+<h2>Offline Evaluation Has Bias</h2>
+<p>Historical data records recommendations made by an older system. Items that were never shown had little chance to receive feedback. This exposure bias can make a new method look worse simply because it recommends unexplored items.</p>
+<p>Use temporal splits to prevent future interactions from leaking into training. Compare against simple baselines, report uncertainty, and evaluate multiple user segments. Counterfactual methods can help, but they rely on logged exposure probabilities and careful assumptions.</p>
+
+<h2>Online Tests Measure Real Behaviour</h2>
+<p>A controlled experiment can measure click-through rate, watch time, completion, conversion, retention, or explicit satisfaction. Guardrail metrics should watch latency, errors, complaints, and concentration on a narrow set of items.</p>
+<p>Short-term engagement is not always long-term value. A system that encourages endless low-quality clicks may improve one metric while harming trust. Combine behavioural data with surveys, qualitative review, and longer observation windows.</p>
+
+<h2>A Good Evaluation Is a Dashboard</h2>
+<p>No single number captures recommendation quality. A practical scorecard includes ranking quality, coverage, diversity, novelty, calibration, fairness across segments, system latency, and business outcomes. The goal is to understand tradeoffs and choose them deliberately.</p>

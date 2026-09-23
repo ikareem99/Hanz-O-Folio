@@ -1,0 +1,29 @@
+<p>A baseline is the simplest credible answer to a machine-learning problem. It tells you whether the problem contains a useful signal, whether the evaluation pipeline works, and whether a complex model earns its additional cost.</p>
+
+<h2>Begin with a Non-Model Baseline</h2>
+<p>For classification, predict the majority class or sample according to class frequency. For regression, predict the training mean or median. For forecasting, use the last observed value or a seasonal repeat. For ranking, compare with popularity or recency.</p>
+<p>These baselines are intentionally limited. If a sophisticated pipeline cannot beat them on the metric that matters, the team should investigate the data and evaluation before tuning more parameters.</p>
+
+<h2>Add a Simple Learned Model</h2>
+<p>Linear or logistic regression, a shallow decision tree, or a basic nearest-neighbour method provides a stronger reference. Simple models train quickly, expose feature and pipeline problems, and often perform surprisingly well on structured data.</p>
+<p>Use the same train, validation, and test strategy that later models will use. A baseline measured with an easier split is not a valid comparison.</p>
+
+<h2>Compare More Than Accuracy</h2>
+<p>The primary metric should match the decision. Class imbalance may require precision, recall, F1, or area under a precision-recall curve. Regression may need absolute rather than squared error when rare large mistakes should not dominate. Business cost can be more useful than a generic statistical metric.</p>
+<p>Also record training time, inference latency, memory, model size, and operational dependencies. A one-point metric gain may not justify a ten-times slower system.</p>
+
+<h2>Use Error Analysis to Choose Complexity</h2>
+<p>Inspect where the baseline fails. Group errors by class, feature range, time period, geography, or data source. Read individual examples. Some failures reveal missing information that no model can recover; others point to non-linear relationships or interactions that a more expressive model may capture.</p>
+<p>Complexity should answer a diagnosed limitation. Gradient-boosted trees may help when interactions dominate. Sequence models may help when order matters. Embeddings may help when raw text similarity is important. The model choice becomes an engineering hypothesis rather than a fashion decision.</p>
+
+<h2>Estimate Uncertainty</h2>
+<p>A single score can be noisy. Repeat cross-validation where appropriate, bootstrap confidence intervals, or report variation across time windows. If the difference between two models is smaller than the uncertainty, there may be no meaningful winner.</p>
+<p>Keep the final test set untouched until the choice is nearly complete. Repeated decisions based on the test score turn it into another validation set.</p>
+
+<h2>Consider the Full Cost</h2>
+<p>A model creates costs in data preparation, deployment, monitoring, retraining, explanation, and failure handling. A simple model may support real-time prediction on ordinary hardware, while a complex one needs accelerators or external APIs.</p>
+<p>The cost of mistakes is also uneven. In a high-stakes workflow, calibration, interpretability, and a reliable fallback may matter more than a small average improvement.</p>
+
+<h2>Keep the Baseline After Launch</h2>
+<p>The baseline remains useful as a monitoring reference. When a production model degrades, comparing it with the simple method helps distinguish model drift from a broken data pipeline. A fallback model can also keep a service available during an incident.</p>
+<p>A baseline is not a beginner exercise to discard. It is the control group for the entire modelling process. Complexity is valuable when it produces a repeatable improvement that matters to users and survives operational constraints.</p>

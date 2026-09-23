@@ -1,0 +1,25 @@
+<p>Word Shooter is a C++ word-puzzle game in which the player launches letter tiles into a board and earns points when valid words appear. It combines real-time input and rendering with grid logic, dictionary lookup, scoring, and persistent records of discovered words.</p>
+
+<h2>The Core Game Loop</h2>
+<p>The board is represented as a two-dimensional grid of letter values. A current letter and a preview of the next letter are displayed near the launcher. Mouse input determines the shot direction, and timer-driven updates move the active letter until it reaches an available position in the grid.</p>
+<p>Once a letter settles, the game updates the board and searches for valid words. The current and next letters then advance, giving the player immediate feedback and a new decision. Score and remaining time are drawn alongside the board, with a final score displayed when the session ends.</p>
+
+<h2>Finding Words in the Grid</h2>
+<p>The word-search logic scans sequences horizontally, vertically, and diagonally. Candidate strings have a minimum length before they are checked against the dictionary. When a valid sequence is found, its length contributes to the score and the word is appended to a local file.</p>
+<p>A large English word list is loaded at startup. To reduce the range searched for each candidate, the dictionary is divided conceptually by starting letter. The program first identifies the relevant alphabet section and checks within that range instead of scanning every entry from the beginning.</p>
+
+<h2>Separating Board and Game Behaviour</h2>
+<p>The project contains a board class responsible for grid geometry and drawing support, while the main game file manages textures, letters, input callbacks, timers, word detection, and score state. Utility code provides the underlying graphics and text-drawing helpers.</p>
+<p>This separation is a useful first step, although the main game file still owns several global values. Moving active-letter state, timing, scoring, and dictionary access into dedicated classes would make the program easier to test and extend.</p>
+
+<h2>Graphics and Interaction</h2>
+<p>The game uses a C++ graphics utility layer built around OpenGL/GLUT-style callbacks and CImg-based image handling. Display, mouse, keyboard, and timer functions are registered with the event loop. Textures for the alphabet tiles are loaded once and reused during drawing.</p>
+<p>Coordinate conversion is an important part of the interaction. Mouse positions arrive in window coordinates, while the board uses its own row and column layout. The game translates between those systems to calculate the launch direction and the final grid position.</p>
+
+<h2>Edge Cases and Limitations</h2>
+<p>A dictionary match does not automatically guarantee an ideal gameplay rule. The search needs a clear policy for overlapping words, repeated detection, diagonals in both directions, and whether letter tiles are removed after scoring. Recording found words is useful for inspection, but a saved session should avoid adding the same detection repeatedly unless that is an intentional rule.</p>
+<p>The current project is a local desktop game with platform-specific build dependencies. A stronger next version could encapsulate state, replace linear dictionary checks with a trie or hash set, add deterministic unit tests for grid searches, handle both diagonal directions consistently, and introduce levels or increasing difficulty.</p>
+
+<h2>What This Project Demonstrates</h2>
+<p>Word Shooter connects C++ fundamentals with an event-driven game loop, coordinate systems, arrays, file input/output, dictionary algorithms, and scoring. The project shows how data structures and algorithms become visible through interactive behaviour.</p>
+<p><a href="https://github.com/ikareem99/word-shooter" target="_blank" rel="noopener noreferrer">View Word Shooter on GitHub</a></p>

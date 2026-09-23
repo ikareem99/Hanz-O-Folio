@@ -1,0 +1,29 @@
+<p>As of September 24, 2026, agent development is shifting from custom prompt loops toward explicit infrastructure. Recent platform and protocol releases focus on long-running execution, tool access, state, sandboxing, interoperability, approvals, tracing, and recovery. For student builders, the important change is the engineering surface around the model.</p>
+
+<h2>Managed Agent Runtimes Are Becoming a Product Layer</h2>
+<p>OpenAI introduced the Agents API in public beta on September 10, 2026. Its official description presents a managed Codex harness with tools, compute environments, saved progress, context management, programmatic tool calling, and multi-agent orchestration. Developers can choose managed, self-hosted, or partner sandbox environments depending on the workload.</p>
+<p>The practical signal is that long-running work now has a dedicated runtime abstraction. A developer still defines the task, tools, permissions, and evaluation, but no longer has to build every loop and persistence mechanism from scratch.</p>
+
+<h2>MCP Moved Toward Ordinary Web Infrastructure</h2>
+<p>The Model Context Protocol published its 2026-07-28 specification with a stateless protocol core, header-based routing, cacheable list results, authorization changes, an extensions framework, and updated SDKs. The stateless design allows remote servers to sit behind standard HTTP load balancing without depending on sticky sessions at the protocol layer.</p>
+<p>The release also introduced official extension work for long-running tasks and interactive applications. This reflects a broader need: tool protocols must handle more than listing a function and returning a quick result.</p>
+
+<h2>Tools Are Becoming Discoverable and Composable</h2>
+<p>Current agent platforms distinguish built-in tools, application functions, remote MCP servers, and code-based orchestration. Tool definitions can be loaded only when relevant, while programmatic tool calling can filter, combine, or parallelise results before returning concise context to the model.</p>
+<p>This matters because a large static tool list consumes context and increases selection errors. Discovery and composition let systems expose capability without forcing the model to reason over every schema on every turn.</p>
+
+<h2>Sandboxes Are Part of the Safety Model</h2>
+<p>An agent that edits files or runs commands needs an execution boundary. Recent agent tooling treats the sandbox as a configurable part of the runtime rather than an implementation detail. A sandbox limits filesystem and network access, isolates dependencies, and gives long-running tasks a place to preserve intermediate work.</p>
+<p>Sandboxing does not replace application permissions. A tool still needs narrow credentials, validated inputs, and approval gates for consequential actions.</p>
+
+<h2>What Student Builders Should Learn</h2>
+<p>The durable skills are system design and evaluation. Learn to define tool schemas, validate state transitions, manage context, trace decisions, protect secrets, and design idempotent workflows. Build small agents with clear stop conditions before attempting autonomous multi-agent systems.</p>
+<p>Protocol literacy also matters. An MCP server is still an API with authentication, versioning, latency, errors, and operational costs. A managed agent runtime still needs acceptance tests and monitoring. Product abstractions reduce boilerplate; they do not remove engineering responsibility.</p>
+
+<h2>A Practical Starting Project</h2>
+<p>Choose a read-only workflow such as analysing a repository or answering questions over a controlled document set. Give the agent two or three narrow tools. Record traces, create a small evaluation set, and measure task completion, incorrect tool use, latency, and cost. Add one write action only after the read path is reliable, and place approval immediately before the side effect.</p>
+
+<h2>Sources and Date</h2>
+<p>This article reflects public information available on September 24, 2026. Primary references: <a href="https://openai.com/index/introducing-the-agents-api/" target="_blank" rel="noopener noreferrer">OpenAI's Agents API announcement</a>, <a href="https://developers.openai.com/api/docs/guides/agents" target="_blank" rel="noopener noreferrer">OpenAI's agent runtime guide</a>, <a href="https://developers.openai.com/api/docs/guides/tools" target="_blank" rel="noopener noreferrer">OpenAI's tools guide</a>, and the <a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/" target="_blank" rel="noopener noreferrer">MCP 2026-07-28 specification announcement</a>.</p>
+
+<p>The direction is clear: agents are becoming an infrastructure problem as much as a model problem. Builders who can connect capability with boundaries, observability, and evidence will be better prepared than those who focus only on prompts.</p>

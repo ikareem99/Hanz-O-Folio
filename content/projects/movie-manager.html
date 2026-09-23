@@ -1,0 +1,24 @@
+<p>Movie Manager is a C++ application for organising movie data and generating personalised recommendations. It applies data structures and recommendation-system ideas to a focused problem: helping a user manage a catalogue and find films that match their preferences.</p>
+
+<h2>The Product Goal</h2>
+<p>A movie catalogue becomes difficult to explore when it grows beyond a small list. Users need fast access by title and category, a way to record preferences, and useful suggestions that do more than repeat the most popular entries. Movie Manager was designed to connect those everyday features with core C++ concepts.</p>
+<p>The project keeps catalogue management and recommendation logic separate. Catalogue operations maintain consistent movie records and user selections. The recommendation layer uses those records to identify relevant candidates, rank them, and return a manageable set of suggestions.</p>
+
+<h2>Choosing Data Structures by Operation</h2>
+<p>There is no single ideal data structure for every task. Sequential containers are useful when preserving an ordered collection and iterating through every movie. Hash-based lookup is appropriate when the user expects quick access by a stable identifier or normalised title. Sets help prevent duplicate categories or repeated selections, while graphs can represent relationships between users, movies, or shared preferences.</p>
+<p>The important decision is to start with the operations the application performs most often. A structure that makes insertion convenient may make searching expensive. A structure that improves lookup may require additional bookkeeping when a movie changes. Movie Manager provides a practical setting for comparing those tradeoffs rather than selecting structures only by habit.</p>
+
+<h2>Building a Recommendation Flow</h2>
+<p>A straightforward recommendation pipeline has four stages. First, collect a signal such as liked movies, preferred genres, or ratings. Second, generate candidates from the catalogue. Third, score those candidates by similarity to the user's preferences. Finally, filter movies the user has already seen and return the strongest remaining options.</p>
+<p>For a compact student application, explainable scoring is more valuable than a needlessly complex model. A recommendation can combine shared genres, similar ratings, or overlap with a user's previous choices. Because the factors are visible, it is possible to understand why one film appears above another and to debug cases where a suggestion feels wrong.</p>
+
+<h2>Correctness Before Optimisation</h2>
+<p>Recommendation code depends on clean catalogue data. Titles need consistent handling, identifiers must stay unique, missing fields need a defined interpretation, and duplicate user actions should not silently distort a score. Input validation and predictable update operations protect the recommendation layer from problems created earlier in the data flow.</p>
+<p>Testing should cover catalogue operations and recommendation behaviour separately. Catalogue tests can add, update, remove, and find records. Recommendation tests can use small, controlled examples where the expected order is easy to calculate by hand. Edge cases include a new user with no preferences, a small catalogue, tied scores, and a user who has already viewed every candidate.</p>
+
+<h2>Limits of a Small Recommender</h2>
+<p>A local C++ project does not have the interaction volume available to a commercial streaming platform. Cold-start users have limited signals, niche items can be overlooked, and content-based suggestions can become repetitive. Recommendation quality also cannot be judged from accuracy alone; diversity, novelty, coverage, and user satisfaction matter.</p>
+<p>Future work could separate storage behind a repository interface, add persistent user profiles, record explicit feedback, and compare multiple ranking strategies on the same test set. The application could also explain each suggestion by displaying the features that contributed most to its score.</p>
+
+<h2>What This Project Demonstrates</h2>
+<p>Movie Manager connects C++ data structures with the reasoning behind recommendation systems. It shows how efficient storage, careful data handling, candidate generation, and transparent ranking work together in a practical application.</p>

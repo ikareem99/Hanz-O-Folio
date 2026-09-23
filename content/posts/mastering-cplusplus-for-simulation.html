@@ -1,0 +1,25 @@
+<p>Building a 2D driving game in C++ changed how I think about simulation code. The difficult part was not drawing a car on the screen. It was maintaining a world that responds consistently to input, time, collisions, scoring, and state changes while being redrawn many times per second.</p>
+
+<h2>The Game Loop Is the System Clock</h2>
+<p>A real-time program repeats three broad steps: collect input, update the world, and render the result. Mixing those responsibilities makes behaviour difficult to debug. An input handler should describe intent, the update step should apply rules, and the renderer should display the resulting state without changing it.</p>
+<p>This separation makes the program easier to test. Movement and collision code can be exercised without drawing a frame, while visual problems can be investigated without questioning whether rendering altered the simulation.</p>
+
+<h2>Use Time, Not Frame Count</h2>
+<p>If a vehicle moves five pixels per frame, it travels faster on a machine that renders more frames. Multiplying speed by elapsed time makes movement approximately independent of frame rate. The update step receives a delta time, and positions change according to units per second.</p>
+<p>Delta time also needs limits. When a program pauses in a debugger or a window loses focus, one unusually large update can send an object through a wall. Clamping the maximum step or processing several smaller fixed updates keeps the simulation stable.</p>
+
+<h2>Make State Explicit</h2>
+<p>Menu, playing, paused, completed, and game-over modes should be real states rather than scattered Boolean flags. Each state accepts a known set of inputs and runs a known update path. The vehicle should not move while paused, and score should not continue changing after the game ends.</p>
+<p>Objects benefit from the same discipline. A vehicle owns position, direction, speed, and bounds. Obstacles expose collision geometry. Goals expose completion rules. Explicit ownership reduces the chance that several parts of the program update the same value differently.</p>
+
+<h2>Collision Detection Is Mostly Policy</h2>
+<p>For a top-down 2D game, axis-aligned rectangles can provide a clear first collision model. Two objects overlap when their horizontal and vertical ranges overlap. The formula is simple; deciding what happens afterward is the real design work.</p>
+<p>A collision may block the proposed movement, return the car to a previous position, reduce score, or end a run. Keeping those responses in a central rule system makes different obstacles behave consistently. Checking a proposed position before committing it also prevents invalid positions from leaking into later calculations.</p>
+
+<h2>Events Prevent Repeated Rewards</h2>
+<p>A condition can stay true for many frames. If score is added whenever the car overlaps a destination, the same arrival may be rewarded dozens of times. Converting the condition into a one-time event solves this: the goal changes from incomplete to complete, and that transition produces the reward once.</p>
+<p>The same pattern works for pickups, penalties, checkpoints, and level completion. State transitions are easier to understand than frame-by-frame side effects.</p>
+
+<h2>Memory Control Is Useful, but Design Comes First</h2>
+<p>C++ offers direct control over object lifetimes and memory, but performance does not come automatically from the language. Clear ownership, value types for small game objects, and standard containers are safer starting points than manual allocation everywhere. Profiling should identify real bottlenecks before optimisation begins.</p>
+<p>Rush Hour taught me that simulation quality comes from predictability. A well-structured loop, explicit state, time-based updates, and centralised rules matter more than clever code. Once those foundations are correct, richer physics, traffic behaviour, and levels can be added without rebuilding the whole game.</p>

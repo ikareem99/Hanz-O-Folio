@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-09-23",
+  "collection": "posts",
+  "source": "Authenticated local /api/v1/posts endpoint backed by the configured MongoDB database",
+  "data": [
+    {
+      "_id":"6a83d8ead40fcf48060d5c83","slug":"building-an-automated-ludo-robot","title":"Building an Automated Ludo Robot with Python & C++","excerpt":"Exploring the challenges and successes of building LudoT, a robot capable of playing the classic board game Ludo using intelligent move selection.","date":"Aug 15, 2026","read":"5min read","coverSrc":"/assets/blog1.jpg","keywords":["robotics","c++","python","ai","coding"],"priority":0,"content":"<h2>The Concept</h2><p>The idea behind LudoT was to merge hardware control with algorithmic pathfinding...</p>"
+    },
+    {
+      "_id":"6a83e39753141a186fc38ed8","slug":"data-structures-in-recommendation-systems","title":"Data Structures in Recommendation Systems","excerpt":"A deep dive into how trees, graphs, and hash tables form the backbone of modern recommendation engines, as seen in the Movie Manager project.","date":"Jul 22, 2026","read":"8min read","coverSrc":"/assets/blog2.jpg","keywords":["c++","data structures","algorithms","coding","recommendation"],"priority":0,"content":"<h2>Why Data Structures Matter</h2><p>When managing vast amounts of movie data, simple arrays just won't cut it. Efficient querying and relation-mapping require graphs and fast lookup tables.</p><h2>Implementing the Core</h2><p>In Movie Manager, we utilized heavily optimized C++ data structures to quickly traverse user preferences and map them to similar films.</p>"
+    },
+    {
+      "_id":"6a83e39753141a186fc38edb","slug":"mastering-cplusplus-for-simulation","title":"Mastering C++ for Game Simulation","excerpt":"Lessons learned while developing the 2D driving logic and features for the Rush Hour simulation game.","date":"May 10, 2026","read":"6min read","coverSrc":"/assets/blog3.jpg","keywords":["c++","simulation","gaming","coding"],"priority":0,"content":"<h2>Performance is Key</h2><p>C++ gives you the control needed to maintain high frame rates in simulation games. Memory management and precise object lifecycles are crucial.</p>"
+    }
+  ]
+}
