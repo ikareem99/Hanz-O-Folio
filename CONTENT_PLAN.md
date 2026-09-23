@@ -76,6 +76,8 @@ The first eleven topics are durable; article 12 gets a specific title only after
 
 ## Batch 5: Visuals, API publishing, and verification
 
+**Status: Completed on Sep 24, 2026.** The production build passed and commit `c69c98f` was deployed through the connected GitHub/Vercel workflow. The live projects index contains all nine projects, the blog index contains all fifteen posts, and the corrected Junior Data Scientist experience appears publicly. All nine project detail pages, fifteen article pages, and their twenty-four referenced cover assets returned successfully. Desktop and 390 px mobile browser checks found no horizontal page overflow. All twenty-one tool icons loaded after lazy loading, and thirty of thirty-one external URLs returned HTTP 200; OpenAI's Agents API announcement returned HTTP 403 to automated requests but remained linked as the official primary source. The three rollback exports remain available under `content/rollback/`.
+
 1. Build a small visual inventory for each project and post: existing image, proposed replacement, source/rights, alt text, and final path. Favor screenshots of actual projects, original diagrams, and custom graphics that fit the current image slots. Avoid generic visuals that contradict the article.
 2. Prepare content as reviewable JSON/HTML files. Validate required fields and unique slugs. Escape or sanitize HTML before sending it to the API because detail pages render `content` directly as HTML.
 3. Send one logical batch at a time through the authenticated API. Use `PUT` for existing records and `POST` for new records; preserve IDs and stable slugs. Read each changed record back and compare it with the prepared source.
